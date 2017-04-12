@@ -29,13 +29,9 @@
         <activity
             android:name=".AcMain"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".AcLogin">
-
-            <!-- Set parent for home button -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AcStart" />
-        </activity>
+        <activity
+            android:name=".AcLogin"
+            android:theme="@style/NoActionBar" />
         <activity android:name=".AcCalendar">
 
             <!-- Set parent for home button -->
@@ -46,7 +42,16 @@
         <activity android:name=".AcTruckLoadInfo" />
         <activity android:name=".AcPickup" />
         <activity android:name=".AcOnRoute" />
-        <activity android:name=".AcLoginYms"></activity>
+        <activity
+            android:name=".AcLoginYms"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".AcLogin$AcMainYms"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".AcMainYms"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".fragment.DialogFragmentShowImage"></activity>
     </application>
 
 </manifest>

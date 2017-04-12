@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +19,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import com.libre.mylibs.MyUtils;
 
@@ -32,6 +36,8 @@ import java.util.List;
 import java.util.Random;
 
 import retrofit.mime.TypedFile;
+import tms.com.libre.tms.fragment.DialogFragmentLanguage;
+import tms.com.libre.tms.fragment.DialogFragmentShowImage;
 
 
 public class AcPickup extends AppCompatActivity implements View.OnClickListener {
@@ -102,7 +108,8 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         imgDamage.setOnClickListener(this);
     }
 
-    public void showChangeLangDialog() {
+    //Show dialog Signature
+    public void showSignatureDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_signature, null);
@@ -116,12 +123,12 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 //get bitmap from signaturepad
                 Bitmap bitmap = signaturePad.getSignatureBitmap();
                 imgSignature.setImageBitmap(bitmap);
-                Log.d("DIALOG", "onClick: "+bitmap.toString());
+                Log.d("DIALOG", "onClick: " + bitmap.toString());
 
                 //save to file
                 Random rand = new Random();
                 int n = rand.nextInt(50) + 1;
-                MyUtils.saveBitmapToFile(MyUtils.resize(bitmap,800,800),"picture"+n+".jpg");
+                MyUtils.saveBitmapToFile(MyUtils.resize(bitmap, 800, 800), "picture" + n + ".jpg");
                 dialog.dismiss();
             }
         });
@@ -134,34 +141,6 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         AlertDialog b = dialogBuilder.create();
         Log.d("DIALOG", "showChangeLangDialog: ");
         b.show();
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnSignature:
-                showChangeLangDialog();
-                break;
-            case R.id.btnScanVin:
-                break;
-            case R.id.btnDamage:
-                seletePhotoAction();
-                break;
-            case R.id.btnUpdateStatus:
-                break;
-            case R.id.rlChangeNotes:
-                break;
-            case R.id.tvVinCode:
-                break;
-            case R.id.tvNotes:
-                break;
-            case R.id.imgSignature:
-                break;
-            case R.id.imgDamage:
-                seletePhotoAction();
-                break;
-        }
     }
 
     public void seletePhotoAction() {
@@ -195,6 +174,15 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         });
 
         b.create().show();
+    }
+
+    public void showPopUpImage(Drawable drawable) {
+        final ImagePopup imagePopup = new ImagePopup(this);
+        imagePopup.setBackgroundColor(Color.BLACK);
+        imagePopup.setWindowWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        imagePopup.setWindowHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        imagePopup.setHideCloseIcon(true);
+        imagePopup.initiatePopup(drawable);
     }
 
     @Override
@@ -270,6 +258,34 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 }
                 break;
             default:
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnSignature:
+                showSignatureDialog();
+                break;
+            case R.id.btnScanVin:
+                break;
+            case R.id.btnDamage:
+                seletePhotoAction();
+                break;
+            case R.id.btnUpdateStatus:
+                break;
+            case R.id.rlChangeNotes:
+                break;
+            case R.id.tvVinCode:
+                break;
+            case R.id.tvNotes:
+                break;
+            case R.id.imgSignature:
+                showPopUpImage(imgSignature.getDrawable());
+                break;
+            case R.id.imgDamage:
+                showPopUpImage(imgDamage.getDrawable());
                 break;
         }
     }

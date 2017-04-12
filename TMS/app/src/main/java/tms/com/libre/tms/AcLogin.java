@@ -4,12 +4,15 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.libre.mylibs.MyUtils;
 
@@ -25,11 +28,15 @@ import tms.com.libre.tms.entry.EnValidateResponse;
 import tms.com.libre.tms.serivces.AppApi;
 
 public class AcLogin extends AppCompatActivity implements View.OnClickListener {
+
     private EditText edtEmail;
     private EditText edtPassword;
     private Button btnLogin;
     private ProgressDialog progressDialog;
     private CheckBox cbSaveLogin;
+    private Toolbar toolbar_login;
+    private RelativeLayout rlBack;
+    private TextView tvTitleLogin;
 
 
     @Override
@@ -81,12 +88,18 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
 
 
     public void init() {
+        toolbar_login = (Toolbar) findViewById(R.id.toolbar_login);
+        rlBack = (RelativeLayout) toolbar_login.findViewById(R.id.rlBack);
+        tvTitleLogin = (TextView) toolbar_login.findViewById(R.id.tvTitleLogin);
+        tvTitleLogin.setText("TMS");
+
 
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         cbSaveLogin = (CheckBox) findViewById(R.id.cbSaveLogin);
         btnLogin.setOnClickListener(this);
+        rlBack.setOnClickListener(this);
     }
 
     @Override
@@ -94,6 +107,10 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btnLogin:
                 actionLogin();
+                break;
+            case R.id.rlBack:
+                Intent intent = new Intent(AcLogin.this, AcStart.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -138,18 +155,14 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
                     MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
                 }
                 progressDialog.cancel();
-
-
             }
 
             @Override
             public void failure(RetrofitError error) {
                 progressDialog.cancel();
                 MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
-
             }
         });
-
     }
 
     private boolean isValidEmail(String emailInput) {
@@ -170,5 +183,6 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }
