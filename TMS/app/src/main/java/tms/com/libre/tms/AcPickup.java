@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +19,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import com.libre.mylibs.MyUtils;
 
@@ -34,7 +38,6 @@ import java.util.Random;
 import retrofit.mime.TypedFile;
 import tms.com.libre.tms.common.AppContanst;
 import tms.com.libre.tms.common.IntentManager;
-
 
 public class AcPickup extends AppCompatActivity implements View.OnClickListener {
 
@@ -85,7 +88,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
     }
 
     public void init() {
-        layoutNotes =(RelativeLayout) findViewById(R.id.layoutNotes);
+        layoutNotes = (RelativeLayout) findViewById(R.id.layoutNotes);
         btnSignature = (Button) findViewById(R.id.btnSignature);
         btnScanVin = (Button) findViewById(R.id.btnScanVin);
         btnDamage = (Button) findViewById(R.id.btnDamage);
@@ -108,7 +111,8 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         imgDamage.setOnClickListener(this);
     }
 
-    public void showChangeLangDialog() {
+    //Show dialog Signature
+    public void showSignatureDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_signature, null);
@@ -147,7 +151,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSignature:
-                showChangeLangDialog();
+                showSignatureDialog();
                 break;
             case R.id.btnScanVin:
                 break;
@@ -165,9 +169,10 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
                 break;
             case R.id.imgSignature:
+                showPopUpImage(imgSignature.getDrawable());
                 break;
             case R.id.imgDamage:
-                seletePhotoAction();
+                showPopUpImage(imgDamage.getDrawable());
                 break;
             case R.id.layoutNotes:
                 IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
@@ -206,6 +211,16 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         });
 
         b.create().show();
+    }
+
+    public void showPopUpImage(Drawable drawable) {
+        final ImagePopup imagePopup = new ImagePopup(this);
+        imagePopup.setBackgroundColor(Color.BLACK);
+        imagePopup.setWindowWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        imagePopup.setWindowHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        imagePopup.setHideCloseIcon(true);
+        imagePopup.setHideCloseIcon(true);
+        imagePopup.initiatePopup(drawable);
     }
 
     @Override
@@ -288,4 +303,5 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 break;
         }
     }
+
 }
