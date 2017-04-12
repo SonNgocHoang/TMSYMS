@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="E:\Libre\TMS\TMS\app\libs\MyUtils.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ade8229859d5c7ae94ca30eb809473e1592a62b6">
+        <dex dex="E:\Libre\TMS\TMS\app\build\intermediates\pre-dexed\debug\MyUtils_15088ea4de37ca72429c7adadc948f7548bcf4f6.jar" />
+    </item>
+
+</items>

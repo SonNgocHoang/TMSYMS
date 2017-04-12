@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\calendar.png",
+        "source": "E:\\Libre\\TMS\\TMS\\app\\src\\main\\res\\drawable-xhdpi\\calendar.png"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\next.png",
+        "source": "E:\\Libre\\TMS\\TMS\\app\\src\\main\\res\\drawable-xhdpi\\next.png"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\logout.png",
+        "source": "E:\\Libre\\TMS\\TMS\\app\\src\\main\\res\\drawable-xhdpi\\logout.png"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\bg.png",
+        "source": "E:\\Libre\\TMS\\TMS\\app\\src\\main\\res\\drawable-xhdpi\\bg.png"
+    }
+]

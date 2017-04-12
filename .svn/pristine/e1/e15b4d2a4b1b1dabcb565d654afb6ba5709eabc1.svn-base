@@ -1,0 +1,113 @@
+package tms.com.libre.tms;
+
+import android.content.DialogInterface;
+import android.content.pm.Signature;
+import android.graphics.Bitmap;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.github.gcacace.signaturepad.views.SignaturePad;
+
+import static android.R.attr.angle;
+
+public class AcPickup extends AppCompatActivity implements View.OnClickListener {
+
+    private Button btnSignature, btnUpdateStatus, btnScanVin, btnDamage;
+    private TextView tvVinCode, tvNotes;
+    private ImageView imgSignature, imgDamage;
+    private RelativeLayout rlChangeNotes;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ac_pickup);
+
+        init();
+
+
+    }
+
+    public void init() {
+        btnSignature = (Button) findViewById(R.id.btnSignature);
+        btnScanVin = (Button) findViewById(R.id.btnScanVin);
+        btnDamage = (Button) findViewById(R.id.btnDamage);
+        btnUpdateStatus = (Button) findViewById(R.id.btnUpdateStatus);
+        rlChangeNotes = (RelativeLayout) findViewById(R.id.rlChangeNotes);
+        tvVinCode = (TextView) findViewById(R.id.tvVinCode);
+        tvNotes = (TextView) findViewById(R.id.tvNotes);
+        imgSignature = (ImageView) findViewById(R.id.imgSignature);
+        imgDamage = (ImageView) findViewById(R.id.imgDamage);
+
+        btnSignature.setOnClickListener(this);
+        btnScanVin.setOnClickListener(this);
+        btnDamage.setOnClickListener(this);
+        btnUpdateStatus.setOnClickListener(this);
+        rlChangeNotes.setOnClickListener(this);
+        tvVinCode.setOnClickListener(this);
+        tvNotes.setOnClickListener(this);
+        imgSignature.setOnClickListener(this);
+        imgDamage.setOnClickListener(this);
+    }
+
+    public void showChangeLangDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_signature, null);
+        dialogBuilder.setView(dialogView);
+
+        final SignaturePad signaturePad = (SignaturePad) dialogView.findViewById(R.id.signaturePad);
+
+        dialogBuilder.setTitle("Get Signature");
+        dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                Bitmap bitmap = signaturePad.getSignatureBitmap();
+                imgSignature.setImageBitmap(bitmap);
+                dialog.dismiss();
+            }
+        });
+        dialogBuilder.setNegativeButton("Clear", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                signaturePad.clear();
+                dialog.dismiss();
+            }
+        });
+        AlertDialog b = dialogBuilder.create();
+        Log.d("DIALOG", "showChangeLangDialog: ");
+        b.show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnSignature:
+                showChangeLangDialog();
+                break;
+            case R.id.btnScanVin:
+                break;
+            case R.id.btnDamage:
+                break;
+            case R.id.btnUpdateStatus:
+                break;
+            case R.id.rlChangeNotes:
+                break;
+            case R.id.tvVinCode:
+                break;
+            case R.id.tvNotes:
+                break;
+            case R.id.imgSignature:
+
+                break;
+            case R.id.imgDamage:
+                break;
+        }
+    }
+}

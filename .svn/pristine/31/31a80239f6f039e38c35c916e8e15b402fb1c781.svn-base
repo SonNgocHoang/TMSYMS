@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\GL62\.android\build-cache\86dae09f6389cf4ebcbf553d0c2a5a29bc29b947\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fea01abd91186a7148aaaf8c517b823eedaac79a">
+        <dex dex="E:\Libre\TMS\TMS\app\build\intermediates\pre-dexed\debug\classes_4853c0e9b814f60592b86de26a946fce1619f6c6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Libre\TMS\TMS\app\libs\MyUtils.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ade8229859d5c7ae94ca30eb809473e1592a62b6">
+        <dex dex="E:\Libre\TMS\TMS\app\build\intermediates\pre-dexed\debug\MyUtils_15088ea4de37ca72429c7adadc948f7548bcf4f6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\GL62\.gradle\caches\modules-2\files-2.1\com.darwinsys\hirondelle-date4j\1.5.1\7b52de513f87ae4d9ff5d17518def0a1e9bc3df0\hirondelle-date4j-1.5.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7b52de513f87ae4d9ff5d17518def0a1e9bc3df0">
+        <dex dex="E:\Libre\TMS\TMS\app\build\intermediates\pre-dexed\debug\hirondelle-date4j-1.5.1_d7e79e372b91d02ba4f95dff5bd5a3425c471907.jar" />
+    </item>
+
+</items>

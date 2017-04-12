@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">TMS</string>
+    <string name="email">Email</string>
+    <string name="pass_word">Password</string>
+    <string name="btn_login">Login</string>
+
+    <string name="label_yms">YMS</string>
+    <string name="label_tms">TMS</string>
+
+    <string name="email_empty">Email empty !</string>
+    <string name="password_empty">Password empty !</string>
+    <string name="invalid_email">Invalid email address</string>
+
+    <string name="loading">Loading</string>
+
+    <string name="chosse_login">Select to login </string>
+    <string name="btn_change_language">Change language </string>
+    <string name="chosse_language">Select your langyage</string>
+
+    <!--created by sonhoang-->
+    <string name="truck_list">Truck List</string>
+    <string name="get_signature">Get Signature</string>
+    <string name="scan_vin">Scan VIN</string>
+    <string name="update_status">Update Status</string>
+    <string name="notes_vihice">Notes Vihicle</string>
+    <string name="dmg">Damage</string>
+    <string name="notes">Notes</string>
+    <string name="change_notes">Change Notes</string>
+
+
+    <string name="truck_load_no">TruckLoad No :</string>
+    <string name="truck_name">Truck :</string>
+    <string name="driver_name">Driver:</string>
+    <string name="created">Created :</string>
+    <string name="Voyage">Voyage :</string>
+
+</resources>

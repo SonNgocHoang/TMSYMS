@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="tms.com.libre.tms">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.SET_TIME_ZONE"
+        android:protectionLevel="signature|system" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".AcStart"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AcMain"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".AcLogin">
+
+            <!-- Set parent for home button -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AcStart" />
+        </activity>
+        <activity android:name=".AcCalendar">
+
+            <!-- Set parent for home button -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AcMain" />
+        </activity>
+        <activity android:name=".AcTruckLoadInfo" />
+        <activity android:name=".AcPickup"></activity>
+        <activity android:name=".AcOnRoute"></activity>
+    </application>
+
+</manifest>

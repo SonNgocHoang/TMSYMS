@@ -1,0 +1,82 @@
+[
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\notification_action_background.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\\output\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMSYMS\\03-Coding\\Android\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_password_eye.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\79e1e0347535414bccf7579b6b904c46658b83fc\\output\\res\\drawable-v21\\design_password_eye.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\bb2c073d03738deb7aed9e30eda7746a5ca1997d\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMSYMS\\03-Coding\\Android\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\bb2c073d03738deb7aed9e30eda7746a5ca1997d\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMSYMS\\03-Coding\\Android\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_show_password.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\79e1e0347535414bccf7579b6b904c46658b83fc\\output\\res\\drawable-v21\\avd_show_password.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\bb2c073d03738deb7aed9e30eda7746a5ca1997d\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\notification_action_background.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\bb2c073d03738deb7aed9e30eda7746a5ca1997d\\output\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMSYMS\\03-Coding\\Android\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\bb2c073d03738deb7aed9e30eda7746a5ca1997d\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMSYMS\\03-Coding\\Android\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_hide_password.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\79e1e0347535414bccf7579b6b904c46658b83fc\\output\\res\\drawable-v21\\avd_hide_password.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\bb2c073d03738deb7aed9e30eda7746a5ca1997d\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMSYMS\\03-Coding\\Android\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\notification_action_background.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\bb2c073d03738deb7aed9e30eda7746a5ca1997d\\output\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_show_password.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\29dc6fb222024d6f2bfa32976dbc9648b5de1bf2\\output\\res\\drawable-v21\\avd_show_password.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\29dc6fb222024d6f2bfa32976dbc9648b5de1bf2\\output\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMSYMS\\03-Coding\\Android\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_bottom_navigation_item_background.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\79e1e0347535414bccf7579b6b904c46658b83fc\\output\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_hide_password.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\29dc6fb222024d6f2bfa32976dbc9648b5de1bf2\\output\\res\\drawable-v21\\avd_hide_password.xml"
+    },
+    {
+        "merged": "E:\\AndroidProject\\AndroidTMSYMS\\03-Coding\\Android\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "E:\\Users\\hoanganhnguyen\\.android\\build-cache\\bb2c073d03738deb7aed9e30eda7746a5ca1997d\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_password_eye.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\29dc6fb222024d6f2bfa32976dbc9648b5de1bf2\\output\\res\\drawable-v21\\design_password_eye.xml"
+    }
+]

@@ -1,0 +1,42 @@
+package tms.com.libre.tms;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+public class AcPickup extends AppCompatActivity {
+
+    private Button btnSignature, btnUpdateStatus, btnScanVin, btnDamage;
+
+    private TextView tvVinCode, tvNotes;
+
+    private ImageView imgSignature, imgDamage;
+
+    private RelativeLayout rlChangeNotes;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ac_pickup);
+
+        init();
+    }
+
+    public void init() {
+        btnSignature = (Button) findViewById(R.id.btnSignature);
+        btnScanVin = (Button) findViewById(R.id.btnScanVin);
+        btnDamage = (Button) findViewById(R.id.btnDamage);
+        btnUpdateStatus = (Button) findViewById(R.id.btnUpdateStatus);
+
+        rlChangeNotes = (RelativeLayout) findViewById(R.id.rlChangeNotes);
+
+        tvVinCode = (TextView) findViewById(R.id.tvVinCode);
+        tvNotes = (TextView) findViewById(R.id.tvNotes);
+
+        imgSignature = (ImageView) findViewById(R.id.imgSignature);
+        imgDamage = (ImageView) findViewById(R.id.imgDamage);
+    }
+}

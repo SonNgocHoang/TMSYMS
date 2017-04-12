@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\\output\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "E:\\Libre\\TMS\\TMS\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\GL62\\.android\\build-cache\\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    }
+]

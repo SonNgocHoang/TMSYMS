@@ -1,0 +1,129 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:2:1-45:12
+	package
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:3:5-32
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.SET_TIME_ZONE
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:6:5-8:54
+	android:protectionLevel
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:8:9-51
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:7:9-56
+application
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:10:5-43:19
+MERGED from [com.android.support:design:25.2.0] C:\Users\GL62\.android\build-cache\29dc6fb222024d6f2bfa32976dbc9648b5de1bf2\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:transition:25.2.0] C:\Users\GL62\.android\build-cache\09333cf565f745dac7638aa495ca0f554cf07b5c\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\GL62\.android\build-cache\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\GL62\.android\build-cache\352853c9cb5ec8e6b5604ef2dcb577cf960085d2\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\GL62\.android\build-cache\6f9111cd8889d1ecfb1e4abc043c342fa7db94dc\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-beta4] C:\Users\GL62\.android\build-cache\cc46c0fae8a0b937f4f76482420ac3e843fca996\output\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\GL62\.android\build-cache\2ed96065e6b863422656b97b4b4d8d4e968ac3ac\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\GL62\.android\build-cache\1d91bcc69b13f64687853f9b22537168978092df\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\GL62\.android\build-cache\6abfc45482857a0c7683a1f30a07d5133a4aad62\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\GL62\.android\build-cache\e2a7251dad1dd7c95e28e54f1fdeba6a375ab4b3\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\GL62\.android\build-cache\ba506e16a838c80620935ee9d96ca978b3296cf8\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\GL62\.android\build-cache\adfcd9a7a303f07b6d4db23b61fb6fcc5d2ab888\output\AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:13:9-41
+	android:supportsRtl
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:15:9-35
+	android:roundIcon
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:14:9-54
+	android:allowBackup
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:11:9-35
+	android:icon
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:12:9-43
+	android:theme
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:16:9-40
+activity#tms.com.libre.tms.AcStart
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:17:9-25:20
+	android:screenOrientation
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:19:13-49
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:18:13-36
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:20:13-24:29
+action#android.intent.action.MAIN
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:21:17-69
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:21:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:23:17-77
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:23:27-74
+activity#tms.com.libre.tms.AcMain
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:26:9-28:50
+	android:theme
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:28:13-47
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:27:13-35
+activity#tms.com.libre.tms.AcLogin
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:29:9-35:20
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:29:19-42
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:32:13-34:44
+	android:value
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:34:17-41
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:33:17-63
+activity#tms.com.libre.tms.AcCalendar
+ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:36:9-42:20
+	android:name
+		ADDED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml:36:19-45
+uses-sdk
+INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.mikepenz:materialdrawer:5.8.2] C:\Users\GL62\.android\build-cache\2196b2ee7dc7dc1e28b9df8efb7e629b8abe7e45\output\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:design:25.2.0] C:\Users\GL62\.android\build-cache\29dc6fb222024d6f2bfa32976dbc9648b5de1bf2\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:recyclerview-v7:25.2.0] C:\Users\GL62\.android\build-cache\4a073df5ac9652092026ab3efea25071887371f7\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.2.0] C:\Users\GL62\.android\build-cache\09333cf565f745dac7638aa495ca0f554cf07b5c\output\AndroidManifest.xml:20:5-44
+MERGED from [com.mikepenz:materialize:1.0.1] C:\Users\GL62\.android\build-cache\f4446830d60c7bb5eedbe87bcfd7ba4b8e8b0e55\output\AndroidManifest.xml:8:5-10:41
+MERGED from [com.mikepenz:iconics-core:2.8.0] C:\Users\GL62\.android\build-cache\075cecc7ac87d799de2dd7e10edefb235337de7d\output\AndroidManifest.xml:8:5-10:41
+MERGED from [com.mikepenz:fastadapter:2.1.0] C:\Users\GL62\.android\build-cache\3f423baa90918b09e882596ee3bbeb84e2454546\output\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\GL62\.android\build-cache\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\GL62\.android\build-cache\352853c9cb5ec8e6b5604ef2dcb577cf960085d2\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\GL62\.android\build-cache\6f9111cd8889d1ecfb1e4abc043c342fa7db94dc\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-beta4] C:\Users\GL62\.android\build-cache\cc46c0fae8a0b937f4f76482420ac3e843fca996\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.roomorama:caldroid:3.0.1] C:\Users\GL62\.android\build-cache\86dae09f6389cf4ebcbf553d0c2a5a29bc29b947\output\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\GL62\.android\build-cache\2ed96065e6b863422656b97b4b4d8d4e968ac3ac\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\GL62\.android\build-cache\1d91bcc69b13f64687853f9b22537168978092df\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\GL62\.android\build-cache\6abfc45482857a0c7683a1f30a07d5133a4aad62\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\GL62\.android\build-cache\e2a7251dad1dd7c95e28e54f1fdeba6a375ab4b3\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\GL62\.android\build-cache\ba506e16a838c80620935ee9d96ca978b3296cf8\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\GL62\.android\build-cache\adfcd9a7a303f07b6d4db23b61fb6fcc5d2ab888\output\AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.2.0] C:\Users\GL62\.android\build-cache\29dc6fb222024d6f2bfa32976dbc9648b5de1bf2\output\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Libre\TMS\TMS\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\GL62\.android\build-cache\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\GL62\.android\build-cache\352853c9cb5ec8e6b5604ef2dcb577cf960085d2\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\GL62\.android\build-cache\6f9111cd8889d1ecfb1e4abc043c342fa7db94dc\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\GL62\.android\build-cache\2ed96065e6b863422656b97b4b4d8d4e968ac3ac\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\GL62\.android\build-cache\1d91bcc69b13f64687853f9b22537168978092df\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\GL62\.android\build-cache\6abfc45482857a0c7683a1f30a07d5133a4aad62\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\GL62\.android\build-cache\e2a7251dad1dd7c95e28e54f1fdeba6a375ab4b3\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\GL62\.android\build-cache\ba506e16a838c80620935ee9d96ca978b3296cf8\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\GL62\.android\build-cache\adfcd9a7a303f07b6d4db23b61fb6fcc5d2ab888\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\GL62\.android\build-cache\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\output\AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\GL62\.android\build-cache\36a8486f1e6f73b7b2384d07e5201ce00fb244e7\output\AndroidManifest.xml:26:9-47

@@ -1,0 +1,27 @@
+package tms.com.libre.tms.serivces;
+
+import retrofit.Callback;
+import retrofit.http.GET;
+import retrofit.http.Query;
+import tms.com.libre.tms.entry.LoginResponse;
+import tms.com.libre.tms.entry.ValidateResponse;
+
+/**
+ * Created by quangnv on 4/11/17.
+ */
+
+public interface AppServices {
+
+    @GET("/Account/GetValidationToken")
+    public void login(@Query("email") String email, @Query("password") String password, Callback<LoginResponse> loginResponseCallback);
+
+    @GET("/Account/ValidateToken")
+    public void checkValidationToken(@Query("token") String token , Callback<ValidateResponse> responseCallback);
+
+    @GET("/MobileApi/getTruckLoad")
+    public void getTruckLoad(@Query("tokenId") String tokenId,
+                             @Query("driverId") String driverId,
+                             @Query("statusId") String statusId,
+                             @Query("pagesize") String pageSize
+                             );
+}

@@ -1,0 +1,97 @@
+package tms.com.libre.tms;
+
+import android.content.Intent;
+import android.media.Image;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.libre.mylibs.MyUtils;
+import com.mikepenz.materialdrawer.Drawer;
+
+import tms.com.libre.tms.common.AppContanst;
+
+public class AcMain extends AppCompatActivity implements View.OnClickListener {
+    public static Drawer drawer;
+    private LinearLayout layoutPickUp;
+    private LinearLayout layoutOnRoute;
+    private LinearLayout layoutDrop;
+
+    private TextView tvPickUp;
+    private TextView tvOnRoute;
+    private TextView tvDrop;
+
+    private Image imgAva;
+    private TextView tvName;
+
+    private Toolbar toolbar;
+    private TextView tvToolbar;
+    private RelativeLayout rlSignOut;
+    private RelativeLayout rlCalender;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ac_main);
+        init();
+
+    }
+
+    public void init() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        rlSignOut = (RelativeLayout) findViewById(R.id.rlSignOut);
+        rlSignOut.setOnClickListener(this);
+
+        rlCalender = (RelativeLayout) findViewById(R.id.rlCalender);
+        rlCalender.setOnClickListener(this);
+
+        findViewById(R.id.gotoPickUp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AcMain.this, TestSignature.class));
+            }
+        });
+
+    }
+
+//    public void initSlideMenuItem() {
+//        layoutPickUp = (LinearLayout) drawer.getDrawerLayout().findViewById(R.id.layoutPickUp);
+//        layoutPickUp.setOnClickListener(this);
+//        layoutOnRoute = (LinearLayout) drawer.getDrawerLayout().findViewById(R.id.layoutOnRoute);
+//        layoutOnRoute.setOnClickListener(this);
+//        layoutDrop = (LinearLayout) drawer.getDrawerLayout().findViewById(R.id.layoutDrop);
+//        layoutDrop.setOnClickListener(this);
+//
+//        tvPickUp = (TextView) drawer.getDrawerLayout().findViewById(R.id.tvPickUp);
+//        tvOnRoute = (TextView) drawer.getDrawerLayout().findViewById(R.id.tvOnRoute);
+//        tvDrop = (TextView) drawer.getDrawerLayout().findViewById(R.id.tvDrop);
+//
+//    }
+//
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.layoutPickUp:
+                break;
+            case R.id.layoutOnRoute:
+                break;
+            case R.id.layoutDrop:
+                break;
+            case R.id.rlSignOut:
+                Intent intent = new Intent(AcMain.this, AcStart.class);
+                MyUtils.insertStringData(getApplicationContext(), AppContanst.TOKEN, "");
+                startActivity(intent);
+                break;
+            case R.id.rlCalender:
+                Intent intent1 = new Intent(AcMain.this, AcCalendar.class);
+                startActivity(intent1);
+                break;
+        }
+
+    }
+}
