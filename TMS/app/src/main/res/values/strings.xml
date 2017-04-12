@@ -41,4 +41,6 @@
     <string name="seleted_photo_upload">Select upload photo</string>
     <string name="select_where_photo">Select where you want to select photo</string>
 
+    <string name="save_login">Save Login</string>
+
 </resources>

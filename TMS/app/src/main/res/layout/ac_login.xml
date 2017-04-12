@@ -38,10 +38,10 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <LinearLayout
                     android:id="@+id/email_login_form"
@@ -50,34 +50,43 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:textColor="@color/white"
-                        android:hint="@string/email"
                         android:id="@+id/edtEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/white" />
 
                     <EditText
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
-                        android:hint="@string/pass_word"
                         android:id="@+id/edtPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
+                        android:hint="@string/pass_word"
                         android:inputType="textPassword"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white" />
+
+                    <CheckBox
+                        android:id="@+id/cbSaveLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@android:color/white"
+                        android:checked="true"
+                        android:text="@string/save_login"
+                        android:textColor="@android:color/white" />
 
                     <Button
-                        android:text="@string/btn_login"
                         android:id="@+id/btnLogin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@drawable/btn_ac_start"
+                        android:text="@string/btn_login"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 

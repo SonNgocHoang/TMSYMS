@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.libre.mylibs.MyUtils;
@@ -28,6 +29,8 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
     private EditText edtPassword;
     private Button btnLogin;
     private ProgressDialog progressDialog;
+    private CheckBox cbSaveLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +38,22 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.setCancelable(false);
-        checkLoginStatus();
         setContentView(R.layout.ac_login);
         init();
+        checkLoginStatus();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         checkLoginStatus();
+
+        //check Save Login sonhoang
+        String email = MyUtils.getStringData(getApplicationContext(), AppContanst.EMAIL);
+        String password = MyUtils.getStringData(getApplicationContext(), AppContanst.PASSWORD);
+
+        edtEmail.setText(email);
+        edtPassword.setText(password);
     }
 
     public void checkLoginStatus() {
@@ -69,11 +79,13 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+
     public void init() {
 
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        cbSaveLogin = (CheckBox) findViewById(R.id.cbSaveLogin);
         btnLogin.setOnClickListener(this);
     }
 
@@ -99,7 +111,15 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
             edtEmail.setError(getString(R.string.invalid_email));
             edtEmail.requestFocus();
         } else {
-            loginFinal(email, password);
+            if (cbSaveLogin.isChecked()) {
+                loginFinal(email, password);
+                MyUtils.insertStringData(getBaseContext(), AppContanst.EMAIL, email);
+                MyUtils.insertStringData(getBaseContext(), AppContanst.PASSWORD, password);
+            } else {
+                MyUtils.insertStringData(getBaseContext(), AppContanst.EMAIL, "");
+                MyUtils.insertStringData(getBaseContext(), AppContanst.PASSWORD, "");
+                loginFinal(email, password);
+            }
         }
     }
 
@@ -109,12 +129,12 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
         appApi.services().login(email, password, new Callback<EnLoginResponse>() {
             @Override
             public void success(EnLoginResponse loginResponse, Response response) {
-                Log.d("testetseas",loginResponse.getContent().getToken());
-                if(loginResponse.getStatusCode()==200){
+                Log.d("testetseas", loginResponse.getContent().getToken());
+                if (loginResponse.getStatusCode() == 200) {
                     MyUtils.insertStringData(getApplicationContext(), AppContanst.TOKEN, loginResponse.getContent().getToken());
                     MyUtils.showToast(getApplicationContext(), "Login Success");
                     startActivity(new Intent(AcLogin.this, AcMain.class));
-                }else{
+                } else {
                     MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
                 }
                 progressDialog.cancel();
@@ -150,4 +170,5 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

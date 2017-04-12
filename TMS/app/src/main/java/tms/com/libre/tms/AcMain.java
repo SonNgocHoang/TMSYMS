@@ -5,6 +5,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -49,6 +50,9 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
         adapterTruckLoad = new AdapterTruckLoad(getApplicationContext(), listTruckLoads);
         init();
         gridviewTruckLoad.setAdapter(adapterTruckLoad);
+
+        Log.d("AcMain", "onCreate: " + MyUtils.getStringData(getBaseContext(), AppContanst.EMAIL));
+        Log.d("AcMain", "onCreate: " + MyUtils.getStringData(getBaseContext(), AppContanst.PASSWORD));
     }
 
     public void init() {
