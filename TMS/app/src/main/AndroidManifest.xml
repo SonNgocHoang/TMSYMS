@@ -47,6 +47,7 @@
         <activity android:name=".AcPickup" />
         <activity android:name=".AcOnRoute" />
         <activity android:name=".AcLoginYms"></activity>
+        <activity android:name=".AccAddNote"></activity>
     </application>
 
 </manifest>

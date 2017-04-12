@@ -32,6 +32,8 @@ import java.util.List;
 import java.util.Random;
 
 import retrofit.mime.TypedFile;
+import tms.com.libre.tms.common.AppContanst;
+import tms.com.libre.tms.common.IntentManager;
 
 
 public class AcPickup extends AppCompatActivity implements View.OnClickListener {
@@ -41,7 +43,9 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
     private ImageView imgSignature, imgDamage;
     private RelativeLayout rlChangeNotes;
     private static int REQUEST_CODE_SOME_FEATURES_PERMISSIONS = 999;
+    private static final int NOTES_REQUEST_CODE = 4;
     private TypedFile image_edit;
+    private RelativeLayout layoutNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
     }
 
     public void init() {
+        layoutNotes =(RelativeLayout) findViewById(R.id.layoutNotes);
         btnSignature = (Button) findViewById(R.id.btnSignature);
         btnScanVin = (Button) findViewById(R.id.btnScanVin);
         btnDamage = (Button) findViewById(R.id.btnDamage);
@@ -91,6 +96,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         imgSignature = (ImageView) findViewById(R.id.imgSignature);
         imgDamage = (ImageView) findViewById(R.id.imgDamage);
 
+        layoutNotes.setOnClickListener(this);
         btnSignature.setOnClickListener(this);
         btnScanVin.setOnClickListener(this);
         btnDamage.setOnClickListener(this);
@@ -116,12 +122,12 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 //get bitmap from signaturepad
                 Bitmap bitmap = signaturePad.getSignatureBitmap();
                 imgSignature.setImageBitmap(bitmap);
-                Log.d("DIALOG", "onClick: "+bitmap.toString());
+                Log.d("DIALOG", "onClick: " + bitmap.toString());
 
                 //save to file
                 Random rand = new Random();
                 int n = rand.nextInt(50) + 1;
-                MyUtils.saveBitmapToFile(MyUtils.resize(bitmap,800,800),"picture"+n+".jpg");
+                MyUtils.saveBitmapToFile(MyUtils.resize(bitmap, 800, 800), "picture" + n + ".jpg");
                 dialog.dismiss();
             }
         });
@@ -151,15 +157,20 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
             case R.id.btnUpdateStatus:
                 break;
             case R.id.rlChangeNotes:
+                IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
                 break;
             case R.id.tvVinCode:
                 break;
             case R.id.tvNotes:
+                IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
                 break;
             case R.id.imgSignature:
                 break;
             case R.id.imgDamage:
                 seletePhotoAction();
+                break;
+            case R.id.layoutNotes:
+                IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
                 break;
         }
     }
@@ -215,6 +226,10 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                     if (resultCode == RESULT_OK) {
                         displayImageFromGallery(imageReturnedIntent, imgDamage);
                     }
+                    break;
+                case NOTES_REQUEST_CODE:
+                    Log.d("davaoday", "aaaa");
+                    tvNotes.setText(MyUtils.getStringData(getApplicationContext(), AppContanst.NOTES));
                     break;
             }
         } catch (Exception e) {
