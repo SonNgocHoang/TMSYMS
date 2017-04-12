@@ -49,53 +49,56 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_notes">
 
-            <RelativeLayout
-                android:id="@+id/rlTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp">
-
-                <TextView
-                    android:id="@+id/tvTitleNotes"
+                <RelativeLayout
+                    android:id="@+id/rlTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:text="@string/notes"
-                    android:textAllCaps="true" />
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/imgChangeNotes"
-                    android:paddingLeft="10dp"
-                    android:text="@string/change_notes"
-                    android:textAllCaps="true" />
+                    <TextView
+                        android:id="@+id/tvTitleNotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="@string/notes"
+                        android:textAllCaps="true" />
 
-                <ImageView
-                    android:id="@+id/imgChangeNotes"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/next"
-                    android:tint="@color/md_brown_200" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imgChangeNotes"
+                        android:paddingLeft="10dp"
+                        android:text="@string/change_notes"
+                        android:textAllCaps="true" />
 
+                    <ImageView
+                        android:id="@+id/imgChangeNotes"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/next"
+                        android:tint="@color/md_brown_200" />
+
+                </RelativeLayout>
             </RelativeLayout>
-</RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/layoutNotes"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="@drawable/background_scroll_notes">
 
                 <TextView
+                    android:paddingLeft="5dp"
+                    android:maxLines="5"
                     android:id="@+id/tvNotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-
                     android:scrollbars="vertical" />
             </RelativeLayout>
 

@@ -46,4 +46,10 @@
     <string name="cancel">Cancel</string>
     <string name="take_another">Take Another</string>
 
+    <string name="add_notes">And something note</string>
+    <string name="btn_add_note">Add note</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <string name="str_total">%1$d /1000</string>
+
 </resources>

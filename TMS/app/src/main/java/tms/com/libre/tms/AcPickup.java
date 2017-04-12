@@ -36,9 +36,8 @@ import java.util.List;
 import java.util.Random;
 
 import retrofit.mime.TypedFile;
-import tms.com.libre.tms.fragment.DialogFragmentLanguage;
-import tms.com.libre.tms.fragment.DialogFragmentShowImage;
-
+import tms.com.libre.tms.common.AppContanst;
+import tms.com.libre.tms.common.IntentManager;
 
 public class AcPickup extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,7 +46,9 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
     private ImageView imgSignature, imgDamage;
     private RelativeLayout rlChangeNotes;
     private static int REQUEST_CODE_SOME_FEATURES_PERMISSIONS = 999;
+    private static final int NOTES_REQUEST_CODE = 4;
     private TypedFile image_edit;
+    private RelativeLayout layoutNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
     }
 
     public void init() {
+        layoutNotes = (RelativeLayout) findViewById(R.id.layoutNotes);
         btnSignature = (Button) findViewById(R.id.btnSignature);
         btnScanVin = (Button) findViewById(R.id.btnScanVin);
         btnDamage = (Button) findViewById(R.id.btnDamage);
@@ -97,6 +99,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         imgSignature = (ImageView) findViewById(R.id.imgSignature);
         imgDamage = (ImageView) findViewById(R.id.imgDamage);
 
+        layoutNotes.setOnClickListener(this);
         btnSignature.setOnClickListener(this);
         btnScanVin.setOnClickListener(this);
         btnDamage.setOnClickListener(this);
@@ -143,6 +146,40 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         b.show();
     }
 
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnSignature:
+                showSignatureDialog();
+                break;
+            case R.id.btnScanVin:
+                break;
+            case R.id.btnDamage:
+                seletePhotoAction();
+                break;
+            case R.id.btnUpdateStatus:
+                break;
+            case R.id.rlChangeNotes:
+                IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
+                break;
+            case R.id.tvVinCode:
+                break;
+            case R.id.tvNotes:
+                IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
+                break;
+            case R.id.imgSignature:
+                showPopUpImage(imgSignature.getDrawable());
+                break;
+            case R.id.imgDamage:
+                showPopUpImage(imgDamage.getDrawable());
+                break;
+            case R.id.layoutNotes:
+                IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
+                break;
+        }
+    }
+
     public void seletePhotoAction() {
         AlertDialog.Builder b = new AlertDialog.Builder(this);
 
@@ -182,6 +219,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         imagePopup.setWindowWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         imagePopup.setWindowHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         imagePopup.setHideCloseIcon(true);
+        imagePopup.setHideCloseIcon(true);
         imagePopup.initiatePopup(drawable);
     }
 
@@ -203,6 +241,10 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                     if (resultCode == RESULT_OK) {
                         displayImageFromGallery(imageReturnedIntent, imgDamage);
                     }
+                    break;
+                case NOTES_REQUEST_CODE:
+                    Log.d("davaoday", "aaaa");
+                    tvNotes.setText(MyUtils.getStringData(getApplicationContext(), AppContanst.NOTES));
                     break;
             }
         } catch (Exception e) {
@@ -262,31 +304,4 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnSignature:
-                showSignatureDialog();
-                break;
-            case R.id.btnScanVin:
-                break;
-            case R.id.btnDamage:
-                seletePhotoAction();
-                break;
-            case R.id.btnUpdateStatus:
-                break;
-            case R.id.rlChangeNotes:
-                break;
-            case R.id.tvVinCode:
-                break;
-            case R.id.tvNotes:
-                break;
-            case R.id.imgSignature:
-                showPopUpImage(imgSignature.getDrawable());
-                break;
-            case R.id.imgDamage:
-                showPopUpImage(imgDamage.getDrawable());
-                break;
-        }
-    }
 }
