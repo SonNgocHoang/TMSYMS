@@ -7,17 +7,27 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class EnLoginResponse {
+
+
     @SerializedName("StatusCode")
     private int StatusCode;
     @SerializedName("Content")
-    private String Content;
+    private Content Content;
 
     public int getStatusCode() {
         return StatusCode;
     }
 
-    public String getContent() {
+    public Content getContent() {
         return Content;
     }
 
+    public static class Content {
+        @SerializedName("token")
+        private String token;
+
+        public String getToken() {
+            return token;
+        }
+    }
 }

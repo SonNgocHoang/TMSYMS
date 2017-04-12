@@ -12,9 +12,6 @@ import android.widget.EditText;
 
 import com.libre.mylibs.MyUtils;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -112,15 +109,10 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
         appApi.services().login(email, password, new Callback<EnLoginResponse>() {
             @Override
             public void success(EnLoginResponse loginResponse, Response response) {
-                Log.d("testetseas",loginResponse.getContent());
-                try {
-                    JSONObject obj = new JSONObject(loginResponse.getContent());
-                    MyUtils.insertStringData(getApplicationContext(), AppContanst.TOKEN, obj.getString("token"));
-                    MyUtils.showToast(getApplicationContext(), "Login Success");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Log.d("testetseas",loginResponse.getContent().getToken());
                 if(loginResponse.getStatusCode()==200){
+                    MyUtils.insertStringData(getApplicationContext(), AppContanst.TOKEN, loginResponse.getContent().getToken());
+                    MyUtils.showToast(getApplicationContext(), "Login Success");
                     startActivity(new Intent(AcLogin.this, AcMain.class));
                 }else{
                     MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
@@ -133,6 +125,7 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void failure(RetrofitError error) {
                 progressDialog.cancel();
+                MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
 
             }
         });

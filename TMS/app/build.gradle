@@ -28,11 +28,11 @@ dependencies {
         transitive = true;
     }
 
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.roomorama:caldroid:3.0.1'
     compile 'com.github.gcacace:signature-pad:1.2.1'
-
 }

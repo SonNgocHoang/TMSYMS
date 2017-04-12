@@ -41,6 +41,7 @@ public class AcStart extends AppCompatActivity implements View.OnClickListener ,
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnYms:
+                startActivity(new Intent(AcStart.this, AcLoginYms.class));
                 //YMS
                 break;
             case R.id.btnTms:

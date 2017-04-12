@@ -44,8 +44,9 @@
                 android:value=".AcMain" />
         </activity>
         <activity android:name=".AcTruckLoadInfo" />
-        <activity android:name=".AcPickup"></activity>
-        <activity android:name=".AcOnRoute"></activity>
+        <activity android:name=".AcPickup" />
+        <activity android:name=".AcOnRoute" />
+        <activity android:name=".AcLoginYms"></activity>
     </application>
 
 </manifest>
