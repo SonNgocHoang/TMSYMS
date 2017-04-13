@@ -133,6 +133,7 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
                 MyUtils.insertStringData(getBaseContext(), AppContanst.EMAIL, email);
                 MyUtils.insertStringData(getBaseContext(), AppContanst.PASSWORD, password);
             } else {
+                startActivity(new Intent(AcLogin.this, AcMain.class));
                 MyUtils.insertStringData(getBaseContext(), AppContanst.EMAIL, "");
                 MyUtils.insertStringData(getBaseContext(), AppContanst.PASSWORD, "");
                 loginFinal(email, password);
@@ -147,10 +148,19 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void success(EnLoginResponse loginResponse, Response response) {
                 Log.d("testetseas", loginResponse.getContent().getToken());
+                Log.d("testetseas", "" + loginResponse.getStatusCode());
                 if (loginResponse.getStatusCode() == 200) {
+
                     MyUtils.insertStringData(getApplicationContext(), AppContanst.TOKEN, loginResponse.getContent().getToken());
+                    MyUtils.insertStringData(getApplicationContext(), AppContanst.DRIVERID, loginResponse.getContent().getUserRoleID());
+
                     MyUtils.showToast(getApplicationContext(), "Login Success");
-                    startActivity(new Intent(AcLogin.this, AcMain.class));
+                    if (loginResponse.getContent().getUserRoleType().equals("driver")) {
+
+                        startActivity(new Intent(AcLogin.this, AcMain.class));
+                    } else {
+                        startActivity(new Intent(AcLogin.this, AcMainYms.class));
+                    }
                 } else {
                     MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
                 }
@@ -160,6 +170,7 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void failure(RetrofitError error) {
                 progressDialog.cancel();
+                Log.d("testetseas", "failure: " + error.toString());
                 MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
             }
         });

@@ -38,12 +38,12 @@
             android:textColor="@color/white" />
 
         <Button
-            android:enabled="false"
             android:id="@+id/btnAddNotes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_ac_start"
+            android:enabled="false"
             android:paddingRight="5dp"
             android:text="@string/btn_add_note"
             android:textColor="@color/white" />

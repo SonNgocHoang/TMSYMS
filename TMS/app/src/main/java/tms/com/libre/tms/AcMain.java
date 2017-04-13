@@ -1,10 +1,12 @@
 package tms.com.libre.tms;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
@@ -16,10 +18,16 @@ import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import tms.com.libre.tms.adapter.AdapterTruckLoad;
 import tms.com.libre.tms.common.AppContanst;
 import tms.com.libre.tms.entry.EnTruckLoad;
+import tms.com.libre.tms.serivces.AppApi;
 
 public class AcMain extends AppCompatActivity implements View.OnClickListener {
     public static Drawer drawer;
@@ -39,20 +47,23 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
     private RelativeLayout rlSignOut;
     private RelativeLayout rlCalender;
     private GridView gridviewTruckLoad;
-    private ArrayList<EnTruckLoad> listTruckLoads;
+    private ArrayList<EnTruckLoad.Content> listTruckLoads;
     private AdapterTruckLoad adapterTruckLoad;
+
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_main);
-        listTruckLoads = new ArrayList<EnTruckLoad>();
-        adapterTruckLoad = new AdapterTruckLoad(getApplicationContext(), listTruckLoads);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage(getString(R.string.loading));
+        progressDialog.setCancelable(false);
+        getTrucLoad();
         init();
-        gridviewTruckLoad.setAdapter(adapterTruckLoad);
 
-        Log.d("AcMain", "onCreate: " + MyUtils.getStringData(getBaseContext(), AppContanst.EMAIL));
-        Log.d("AcMain", "onCreate: " + MyUtils.getStringData(getBaseContext(), AppContanst.PASSWORD));
+
     }
 
     public void init() {
@@ -65,12 +76,6 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
 
         gridviewTruckLoad = (GridView) findViewById(R.id.gridviewTruckLoad);
 
-        findViewById(R.id.gotoPickUp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AcMain.this, AcPickup.class));
-            }
-        });
 
         findViewById(R.id.gotoOnRoute).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +101,40 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
 //    }
 //
 
+    public void getTrucLoad() {
+        progressDialog.show();
+        AppApi appApi = new AppApi();
+        String driverid = MyUtils.getStringData(getBaseContext(), AppContanst.DRIVERID);
+        String token = MyUtils.getStringData(getBaseContext(), AppContanst.TOKEN);
+
+        appApi.services().getTruckLoad(token, driverid, "16", "30", new Callback<EnTruckLoad>() {
+            @Override
+            public void success(EnTruckLoad enTruckLoad, Response response) {
+                if (enTruckLoad.getStatusCode() == 200) {
+                    listTruckLoads = new ArrayList<>();
+                    listTruckLoads = enTruckLoad.getContent();
+
+                    Log.d("Truck coming", "success: " + enTruckLoad.getContent().size());
+
+                    adapterTruckLoad = new AdapterTruckLoad(AcMain.this, listTruckLoads);
+                    gridviewTruckLoad.setAdapter(adapterTruckLoad);
+
+
+                } else {
+                    MyUtils.showToast(getApplicationContext(), "Load Fail ");
+                }
+
+                progressDialog.cancel();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                progressDialog.cancel();
+                MyUtils.showToast(getApplicationContext(), "Load Fail ");
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -113,6 +152,15 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
             case R.id.rlCalender:
                 Intent intent1 = new Intent(AcMain.this, AcCalendar.class);
                 startActivity(intent1);
+//                Calendar cal = Calendar.getInstance();
+//                Intent intent3 = new Intent(Intent.ACTION_EDIT);
+//                intent3.setType("vnd.android.cursor.item/event");
+//                intent3.putExtra("beginTime", cal.getTimeInMillis());
+//                intent3.putExtra("allDay", true);
+//                intent3.putExtra("rrule", "FREQ=YEARLY");
+//                intent3.putExtra("endTime", cal.getTimeInMillis()+60*60*1000);
+//                intent3.putExtra("title", "A Test Event from android app");
+//                startActivity(intent3);
                 break;
         }
 

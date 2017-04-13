@@ -14,8 +14,7 @@ import java.util.Locale;
 import tms.com.libre.tms.common.AppContanst;
 import tms.com.libre.tms.fragment.DialogFragmentLanguage;
 
-public class AcStart extends AppCompatActivity implements View.OnClickListener , DialogFragmentLanguage.OnHeadlineSelectedListener
-{
+public class AcStart extends AppCompatActivity implements View.OnClickListener, DialogFragmentLanguage.OnHeadlineSelectedListener {
     private Button btnYms;
     private Button btnTms;
     private Button btnLanguage;
@@ -27,23 +26,23 @@ public class AcStart extends AppCompatActivity implements View.OnClickListener ,
         init();
     }
 
-    public void init(){
-        btnYms =(Button) findViewById(R.id.btnYms);
-        btnYms.setOnClickListener(this);
+    public void init() {
+//        btnYms =(Button) findViewById(R.id.btnYms);
+//        btnYms.setOnClickListener(this);
         btnTms = (Button) findViewById(R.id.btnTms);
         btnTms.setOnClickListener(this);
-        btnLanguage =(Button) findViewById(R.id.btnLanguage);
+        btnLanguage = (Button) findViewById(R.id.btnLanguage);
         btnLanguage.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btnYms:
-                startActivity(new Intent(AcStart.this, AcLoginYms.class));
-                //YMS
-                break;
+        switch (view.getId()) {
+//            case R.id.btnYms:
+//                startActivity(new Intent(AcStart.this, AcLoginYms.class));
+//                //YMS
+//                break;
             case R.id.btnTms:
                 startActivity(new Intent(AcStart.this, AcLogin.class));
                 //TMS

@@ -7,10 +7,22 @@
     android:orientation="vertical"
     tools:context="tms.com.libre.tms.AcPickup">
 
+    <RelativeLayout
+        android:id="@+id/rlToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar_login" />
+    </RelativeLayout>
+
+
     <ScrollView
+        android:layout_above="@+id/rlUpdateStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/rlUpdateStatus">
+        android:layout_below="@+id/rlToolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -28,8 +40,10 @@
                     android:id="@+id/btnScanVin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/btn_vinslected"
                     android:text="@string/scan_vin"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black" />
 
                 <TextView
                     android:id="@+id/tvVinCode"
@@ -93,12 +107,12 @@
                 android:background="@drawable/background_scroll_notes">
 
                 <TextView
-                    android:paddingLeft="5dp"
-                    android:maxLines="5"
                     android:id="@+id/tvNotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:maxLines="5"
+                    android:paddingLeft="5dp"
                     android:scrollbars="vertical" />
             </RelativeLayout>
 
@@ -111,14 +125,17 @@
                     android:id="@+id/btnSignature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/btn_vinslected"
                     android:text="@string/get_signature"
                     android:textAllCaps="false" />
 
                 <ImageView
+                    android:paddingTop="10dp"
                     android:id="@+id/imgSignature"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:layout_below="@+id/btnSignature" />
+                    android:layout_below="@+id/btnSignature"
+                    android:src="@drawable/no_image" />
             </RelativeLayout>
 
 
@@ -131,14 +148,17 @@
                     android:id="@+id/btnDamage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/btn_vinslected"
                     android:text="@string/dmg"
                     android:textAllCaps="false" />
 
                 <ImageView
+                    android:paddingTop="10dp"
                     android:id="@+id/imgDamage"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:layout_below="@+id/btnDamage" />
+                    android:layout_below="@+id/btnDamage"
+                    android:src="@drawable/no_image" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -150,12 +170,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <Button
             android:id="@+id/btnUpdateStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_vinslected"
             android:text="@string/update_status"
             android:textAllCaps="false" />
     </RelativeLayout>

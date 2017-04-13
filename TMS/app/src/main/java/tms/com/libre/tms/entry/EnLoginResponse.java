@@ -25,9 +25,21 @@ public class EnLoginResponse {
     public static class Content {
         @SerializedName("token")
         private String token;
+        @SerializedName("userRoleID")
+        private String userRoleID;
+        @SerializedName("userRoleType")
+        private String userRoleType;
 
         public String getToken() {
             return token;
+        }
+
+        public String getUserRoleID() {
+            return userRoleID;
+        }
+
+        public String getUserRoleType() {
+            return userRoleType;
         }
     }
 }

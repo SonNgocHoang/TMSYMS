@@ -59,8 +59,8 @@ public class AcLoginYms extends AppCompatActivity implements View.OnClickListene
         checkLoginStatus();
 
         //check Save Login sonhoang
-        String email = MyUtils.getStringData(getApplicationContext(), AppContanst.EMAIL);
-        String password = MyUtils.getStringData(getApplicationContext(), AppContanst.PASSWORD);
+        String email = MyUtils.getStringData(getApplicationContext(), AppContanst.EMAILYMS);
+        String password = MyUtils.getStringData(getApplicationContext(), AppContanst.PASSWORDYMS);
 
         edtEmail.setText(email);
         edtPassword.setText(password);
@@ -132,11 +132,11 @@ public class AcLoginYms extends AppCompatActivity implements View.OnClickListene
         } else {
             if (cbSaveLogin.isChecked()) {
                 loginFinal(email, password);
-                MyUtils.insertStringData(getBaseContext(), AppContanst.EMAIL, email);
-                MyUtils.insertStringData(getBaseContext(), AppContanst.PASSWORD, password);
+                MyUtils.insertStringData(getBaseContext(), AppContanst.EMAILYMS, email);
+                MyUtils.insertStringData(getBaseContext(), AppContanst.EMAILYMS, password);
             } else {
-                MyUtils.insertStringData(getBaseContext(), AppContanst.EMAIL, "");
-                MyUtils.insertStringData(getBaseContext(), AppContanst.PASSWORD, "");
+                MyUtils.insertStringData(getBaseContext(), AppContanst.EMAILYMS, "");
+                MyUtils.insertStringData(getBaseContext(), AppContanst.EMAILYMS, "");
                 loginFinal(email, password);
             }
         }
@@ -152,7 +152,11 @@ public class AcLoginYms extends AppCompatActivity implements View.OnClickListene
                 if (loginResponse.getStatusCode() == 200) {
                     MyUtils.insertStringData(getApplicationContext(), AppContanst.TOKEN, loginResponse.getContent().getToken());
                     MyUtils.showToast(getApplicationContext(), "Login Success");
-                    startActivity(new Intent(AcLoginYms.this, AcMainYms.class));
+                    if (loginResponse.getContent().getUserRoleType().equals("driver")) {
+                        startActivity(new Intent(AcLoginYms.this, AcMain.class));
+                    } else {
+                        startActivity(new Intent(AcLoginYms.this, AcMainYms.class));
+                    }
                 } else {
                     MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
                 }

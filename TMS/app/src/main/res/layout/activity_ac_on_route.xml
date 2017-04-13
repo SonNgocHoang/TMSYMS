@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="tms.com.libre.tms.AcOnRoute">
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar_login" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlDmgOnRoute"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rlUpdateStatus"
+        android:layout_below="@+id/toolbar">
+
+        <Button
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:id="@+id/btnDMGonRoute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_scanvin"
+            android:text="Damage"
+            android:textAllCaps="false" />
+
+        <ImageView
+            android:id="@+id/imgDMGonRoute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnDMGonRoute"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/no_image" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlUpdateStatusOnRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/btnUpdateStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/update_status"
+            android:textAllCaps="false" />
+    </RelativeLayout>
+
+</RelativeLayout>

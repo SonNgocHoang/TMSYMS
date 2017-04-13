@@ -29,6 +29,7 @@ dependencies {
     }
 
 
+
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
@@ -36,5 +37,6 @@ dependencies {
     compile 'com.roomorama:caldroid:3.0.1'
     compile 'com.github.gcacace:signature-pad:1.2.1'
     compile 'com.github.chathuralakmal:AndroidImagePopup:1.0.6'
-
+    compile 'me.dm7.barcodescanner:zxing:1.9.1'
+    
 }

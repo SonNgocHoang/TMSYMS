@@ -12,7 +12,13 @@ public class AppContanst {
     public final static String LANGUAGE = "language";
 
     public final static String EMAIL = "email";
+    public final static String EMAILYMS = "emailyms";
     public final static String PASSWORD = "password";
+    public final static String PASSWORDYMS = "passwordyms";
 
     public final static String NOTES = "notes";
+
+    public final static String DRIVERID = "driverid";
+
+
 }

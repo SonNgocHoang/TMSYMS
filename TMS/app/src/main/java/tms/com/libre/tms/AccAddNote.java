@@ -56,6 +56,7 @@ public class AccAddNote extends AppCompatActivity implements View.OnClickListene
 
 
     public void init() {
+        getSupportActionBar().setTitle("Add Notes");
         btnCancel = (Button) findViewById(R.id.btnCancel);
         btnAddNotes = (Button) findViewById(R.id.btnAddNotes);
         btnCancel.setOnClickListener(this);

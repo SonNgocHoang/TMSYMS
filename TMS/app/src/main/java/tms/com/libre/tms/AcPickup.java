@@ -16,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.github.gcacace.signaturepad.views.SignaturePad;
+import com.google.zxing.Result;
 import com.libre.mylibs.MyUtils;
 
 import java.io.File;
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit.mime.TypedFile;
 import tms.com.libre.tms.common.AppContanst;
 import tms.com.libre.tms.common.IntentManager;
@@ -42,13 +45,15 @@ import tms.com.libre.tms.common.IntentManager;
 public class AcPickup extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnSignature, btnUpdateStatus, btnScanVin, btnDamage;
-    private TextView tvVinCode, tvNotes;
+    private TextView tvVinCode, tvNotes, tvTitle;
     private ImageView imgSignature, imgDamage;
     private RelativeLayout rlChangeNotes;
     private static int REQUEST_CODE_SOME_FEATURES_PERMISSIONS = 999;
     private static final int NOTES_REQUEST_CODE = 4;
     private TypedFile image_edit;
-    private RelativeLayout layoutNotes;
+    private RelativeLayout layoutNotes, rlBack;
+    private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +93,12 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
     }
 
     public void init() {
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_login);
+        rlBack = (RelativeLayout) toolbar.findViewById(R.id.rlBack);
+        tvTitle = (TextView) toolbar.findViewById(R.id.tvTitleLogin);
+        tvTitle.setText("Pick Up");
+
         layoutNotes = (RelativeLayout) findViewById(R.id.layoutNotes);
         btnSignature = (Button) findViewById(R.id.btnSignature);
         btnScanVin = (Button) findViewById(R.id.btnScanVin);
@@ -99,6 +110,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         imgSignature = (ImageView) findViewById(R.id.imgSignature);
         imgDamage = (ImageView) findViewById(R.id.imgDamage);
 
+        rlBack.setOnClickListener(this);
         layoutNotes.setOnClickListener(this);
         btnSignature.setOnClickListener(this);
         btnScanVin.setOnClickListener(this);
@@ -150,15 +162,20 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.rlBack:
+                startActivity(new Intent(AcPickup.this, AcMain.class));
+                break;
             case R.id.btnSignature:
                 showSignatureDialog();
                 break;
             case R.id.btnScanVin:
+                startActivityForResult(new Intent(AcPickup.this, XzingScanner.class), 10);
                 break;
             case R.id.btnDamage:
                 seletePhotoAction();
                 break;
             case R.id.btnUpdateStatus:
+                startActivity(new Intent(AcPickup.this, AcOnRoute.class));
                 break;
             case R.id.rlChangeNotes:
                 IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
@@ -169,10 +186,10 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
                 break;
             case R.id.imgSignature:
-                showPopUpImage(imgSignature.getDrawable());
+                showPopUpImage(imgSignature.getDrawable(), 0);
                 break;
             case R.id.imgDamage:
-                showPopUpImage(imgDamage.getDrawable());
+                showPopUpImage(imgDamage.getDrawable(), 1);
                 break;
             case R.id.layoutNotes:
                 IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
@@ -213,14 +230,23 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         b.create().show();
     }
 
-    public void showPopUpImage(Drawable drawable) {
+    public void showPopUpImage(Drawable drawable, int i) {
         final ImagePopup imagePopup = new ImagePopup(this);
-        imagePopup.setBackgroundColor(Color.BLACK);
-        imagePopup.setWindowWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-        imagePopup.setWindowHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        imagePopup.setBackgroundColor(Color.GRAY);
         imagePopup.setHideCloseIcon(true);
-        imagePopup.setHideCloseIcon(true);
-        imagePopup.initiatePopup(drawable);
+        imagePopup.setImageOnClickClose(true);
+        if (i == 0) {
+            imagePopup.setWindowWidth(800);
+            imagePopup.setWindowHeight(800);
+            imagePopup.initiatePopup(drawable);
+        } else {
+            imagePopup.setWindowWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+            imagePopup.setWindowHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+
+            imagePopup.initiatePopup(drawable);
+
+        }
+
     }
 
     @Override
@@ -245,6 +271,15 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 case NOTES_REQUEST_CODE:
                     Log.d("davaoday", "aaaa");
                     tvNotes.setText(MyUtils.getStringData(getApplicationContext(), AppContanst.NOTES));
+                    break;
+
+            }
+            switch (resultCode) {
+                case RESULT_OK:
+                    if (requestCode == 10) {
+                        String code = imageReturnedIntent.getStringExtra("code");
+                        tvVinCode.setText(code);
+                    }
                     break;
             }
         } catch (Exception e) {
@@ -303,5 +338,4 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 break;
         }
     }
-
 }
