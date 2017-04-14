@@ -47,20 +47,18 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
         progressDialog.setCancelable(false);
         setContentView(R.layout.ac_login);
         init();
-        checkLoginStatus();
+//        checkLoginStatus();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        checkLoginStatus();
-
         //check Save Login sonhoang
         String email = MyUtils.getStringData(getApplicationContext(), AppContanst.EMAIL);
         String password = MyUtils.getStringData(getApplicationContext(), AppContanst.PASSWORD);
-
         edtEmail.setText(email);
         edtPassword.setText(password);
+//        checkLoginStatus();
     }
 
     public void checkLoginStatus() {
@@ -156,7 +154,6 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
 
                     MyUtils.showToast(getApplicationContext(), "Login Success");
                     if (loginResponse.getContent().getUserRoleType().equals("driver")) {
-
                         startActivity(new Intent(AcLogin.this, AcMain.class));
                     } else {
                         startActivity(new Intent(AcLogin.this, AcMainYms.class));
@@ -171,7 +168,7 @@ public class AcLogin extends AppCompatActivity implements View.OnClickListener {
             public void failure(RetrofitError error) {
                 progressDialog.cancel();
                 Log.d("testetseas", "failure: " + error.toString());
-                MyUtils.showToast(getApplicationContext(), "Login Fail, try again ");
+                MyUtils.showToast(getApplicationContext(), getString(R.string.login_failed));
             }
         });
     }

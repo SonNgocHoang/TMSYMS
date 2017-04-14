@@ -6,7 +6,6 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
@@ -18,15 +17,13 @@ import com.libre.mylibs.MyUtils;
 import com.mikepenz.materialdrawer.Drawer;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import tms.com.libre.tms.adapter.AdapterTruckLoad;
 import tms.com.libre.tms.common.AppContanst;
-import tms.com.libre.tms.entry.EnTruckLoad;
+import tms.com.libre.tms.entry.EnTruckLoadResponse;
 import tms.com.libre.tms.serivces.AppApi;
 
 public class AcMain extends AppCompatActivity implements View.OnClickListener {
@@ -47,7 +44,7 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
     private RelativeLayout rlSignOut;
     private RelativeLayout rlCalender;
     private GridView gridviewTruckLoad;
-    private ArrayList<EnTruckLoad.Content> listTruckLoads;
+    private ArrayList<EnTruckLoadResponse.Content> listTruckLoads;
     private AdapterTruckLoad adapterTruckLoad;
 
     private ProgressDialog progressDialog;
@@ -71,7 +68,7 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
         rlSignOut = (RelativeLayout) findViewById(R.id.rlSignOut);
         rlSignOut.setOnClickListener(this);
 
-        rlCalender = (RelativeLayout) findViewById(R.id.rlCalender);
+        rlCalender = (RelativeLayout) findViewById(R.id.rlCalendar);
         rlCalender.setOnClickListener(this);
 
         gridviewTruckLoad = (GridView) findViewById(R.id.gridviewTruckLoad);
@@ -107,21 +104,21 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
         String driverid = MyUtils.getStringData(getBaseContext(), AppContanst.DRIVERID);
         String token = MyUtils.getStringData(getBaseContext(), AppContanst.TOKEN);
 
-        appApi.services().getTruckLoad(token, driverid, "16", "30", new Callback<EnTruckLoad>() {
+        appApi.services().getTruckLoad(token, driverid, "16", "30", new Callback<EnTruckLoadResponse>() {
             @Override
-            public void success(EnTruckLoad enTruckLoad, Response response) {
-                if (enTruckLoad.getStatusCode() == 200) {
+            public void success(EnTruckLoadResponse enTruckLoadResponse, Response response) {
+                if (enTruckLoadResponse.getStatusCode() == 200) {
                     listTruckLoads = new ArrayList<>();
-                    listTruckLoads = enTruckLoad.getContent();
+                    listTruckLoads = enTruckLoadResponse.getContent();
 
-                    Log.d("Truck coming", "success: " + enTruckLoad.getContent().size());
+                    Log.d("Truck coming", "success: " + enTruckLoadResponse.getContent().size());
 
                     adapterTruckLoad = new AdapterTruckLoad(AcMain.this, listTruckLoads);
                     gridviewTruckLoad.setAdapter(adapterTruckLoad);
 
 
                 } else {
-                    MyUtils.showToast(getApplicationContext(), "Load Fail ");
+                    MyUtils.showToast(getApplicationContext(), getString(R.string.load_fail));
                 }
 
                 progressDialog.cancel();
@@ -130,7 +127,7 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void failure(RetrofitError error) {
                 progressDialog.cancel();
-                MyUtils.showToast(getApplicationContext(), "Load Fail ");
+                MyUtils.showToast(getApplicationContext(), getString(R.string.load_fail));
             }
         });
     }
@@ -149,7 +146,7 @@ public class AcMain extends AppCompatActivity implements View.OnClickListener {
                 MyUtils.insertStringData(getApplicationContext(), AppContanst.TOKEN, "");
                 startActivity(intent);
                 break;
-            case R.id.rlCalender:
+            case R.id.rlCalendar:
                 Intent intent1 = new Intent(AcMain.this, AcCalendar.class);
                 startActivity(intent1);
 //                Calendar cal = Calendar.getInstance();

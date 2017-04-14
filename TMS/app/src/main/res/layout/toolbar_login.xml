@@ -24,6 +24,9 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="20dp"
                     android:id="@+id/imgSignOut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

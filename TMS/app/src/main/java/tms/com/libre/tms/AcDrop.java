@@ -2,15 +2,13 @@ package tms.com.libre.tms;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,40 +16,53 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import com.libre.mylibs.MyUtils;
 
-import java.io.File;
 import java.util.Random;
 
 import retrofit.mime.TypedFile;
 
 public class AcDrop extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnDmgDrop, btnSignatureDrop;
-    private ImageView imgDmgDrop, imgSignatureDrop;
+    private Button btnDmgDrop, btnSignatureDrop, btnScanVinDrop;
+    private ImageView imgSignatureDrop;
     private TypedFile image_edit;
+    private TextView tvVinCodeDrop, tvTitle;
+    private Toolbar toolbar;
+    private RelativeLayout rlBack;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_drop);
+        init();
     }
 
     public void init() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar_login);
+        rlBack = (RelativeLayout) toolbar.findViewById(R.id.rlBack);
+        tvTitle = (TextView) toolbar.findViewById(R.id.tvTitleLogin);
+        tvTitle.setText(R.string.drop);
+
+
         btnDmgDrop = (Button) findViewById(R.id.btnDmgDrop);
+        btnScanVinDrop = (Button) findViewById(R.id.btnScanVinDrop);
         btnSignatureDrop = (Button) findViewById(R.id.btnSignatureDrop);
-        imgDmgDrop = (ImageView) findViewById(R.id.imgDmgDrop);
         imgSignatureDrop = (ImageView) findViewById(R.id.imgSignatureDrop);
+        tvVinCodeDrop = (TextView) findViewById(R.id.tvVinCodeDrop);
 
         btnDmgDrop.setOnClickListener(this);
+        btnScanVinDrop.setOnClickListener(this);
         btnSignatureDrop.setOnClickListener(this);
-        imgDmgDrop.setOnClickListener(this);
         imgSignatureDrop.setOnClickListener(this);
+        tvVinCodeDrop.setOnClickListener(this);
+        rlBack.setOnClickListener(this);
     }
 
 
@@ -108,53 +119,53 @@ public class AcDrop extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    private void displayImageFromGallery(Intent data, ImageView imageView) {
-        Uri selectedImage = data.getData();
-        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-        Cursor cursor = this.getContentResolver().query(selectedImage,
-                filePathColumn, null, null, null);
-        cursor.moveToFirst();
-        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-        String imgDecodableString = cursor.getString(columnIndex);
-        cursor.close();
-        Bitmap bitmap = MyUtils.bitmapRotate(imgDecodableString);
-        imageView.setImageBitmap(bitmap);
-        File file = MyUtils.saveBitmapToFile(MyUtils.resize(bitmap, 800, 800), "picture" + ".jpg");
-        image_edit = new TypedFile("multipart/form-data", file);
-    }
+//    private void displayImageFromGallery(Intent data, ImageView imageView) {
+//        Uri selectedImage = data.getData();
+//        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//        Cursor cursor = this.getContentResolver().query(selectedImage,
+//                filePathColumn, null, null, null);
+//        cursor.moveToFirst();
+//        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//        String imgDecodableString = cursor.getString(columnIndex);
+//        cursor.close();
+//        Bitmap bitmap = MyUtils.bitmapRotate(imgDecodableString);
+//        imageView.setImageBitmap(bitmap);
+//        File file = MyUtils.saveBitmapToFile(MyUtils.resize(bitmap, 800, 800), "picture" + ".jpg");
+//        image_edit = new TypedFile("multipart/form-data", file);
+//    }
+//    public void seletePhotoAction() {
+//        AlertDialog.Builder b = new AlertDialog.Builder(this);
+//
+//        b.setTitle(this.getString(R.string.seleted_photo_upload));
+//        b.setMessage(this.getString(R.string.select_where_photo));
+//        b.setPositiveButton(getString(R.string.from_camera), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                try {
+//                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                    startActivityForResult(takePicture, 0);
+//                } catch (SecurityException s) {
+//                }
+//
+//            }
+//        });
+//        b.setNegativeButton(getString(R.string.from_library), new DialogInterface.OnClickListener() {
+//
+//            @Override
+//
+//            public void onClick(DialogInterface dialog, int which)
+//
+//            {
+//                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
+//            }
+//
+//        });
+//
+//        b.create().show();
+//    }
 
-    public void seletePhotoAction() {
-        AlertDialog.Builder b = new AlertDialog.Builder(this);
-
-        b.setTitle(this.getString(R.string.seleted_photo_upload));
-        b.setMessage(this.getString(R.string.select_where_photo));
-        b.setPositiveButton(getString(R.string.from_camera), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                try {
-                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(takePicture, 0);
-                } catch (SecurityException s) {
-                }
-
-            }
-        });
-        b.setNegativeButton(getString(R.string.from_library), new DialogInterface.OnClickListener() {
-
-            @Override
-
-            public void onClick(DialogInterface dialog, int which)
-
-            {
-                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
-            }
-
-        });
-
-        b.create().show();
-    }
 
     @Override
     public void onClick(View v) {
@@ -164,13 +175,29 @@ public class AcDrop extends AppCompatActivity implements View.OnClickListener {
                 showSignatureDialog();
                 break;
             case R.id.btnDmgDrop:
-                seletePhotoAction();
-                break;
-            case R.id.imgDmgDrop:
-                showPopUpImage(imgDmgDrop.getDrawable(), 1);
+                startActivity(new Intent(AcDrop.this, AcDamageReport.class));
                 break;
             case R.id.imgSignatureDrop:
-                showPopUpImage(imgDmgDrop.getDrawable(), 0);
+                showPopUpImage(imgSignatureDrop.getDrawable(), 0);
+                break;
+            case R.id.btnScanVinDrop:
+                startActivityForResult(new Intent(AcDrop.this, XzingScanner.class), 10);
+                break;
+            case R.id.tvVinCodeDrop:
+                AlertDialog alertDialog = new AlertDialog.Builder(this)
+                        .setTitle(R.string.qrCode)
+                        .setMessage(tvVinCodeDrop.getText().toString())
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create();
+                alertDialog.show();
+                break;
+            case R.id.rlBack:
+                startActivity(new Intent(AcDrop.this, AcOnRoute.class));
                 break;
         }
 
@@ -181,23 +208,29 @@ public class AcDrop extends AppCompatActivity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             switch (requestCode) {
-                case 0:
+//                case 0:
+//                    if (resultCode == RESULT_OK) {
+//                        Bitmap photo = (Bitmap) data.getExtras().get("data");
+//                        imgDmgDrop.setImageBitmap(photo);
+//                        File file = MyUtils.saveBitmapToFile(MyUtils.resize(photo, 800, 800), "picture" + ".jpg");
+//                        image_edit = new TypedFile("multipart/form-data", file);
+//                    }
+//
+//                    break;
+//                case 1:
+//                    if (resultCode == RESULT_OK) {
+//                        displayImageFromGallery(data, imgDmgDrop);
+//                    }
+//                    break;
+                case 10:
                     if (resultCode == RESULT_OK) {
-                        Bitmap photo = (Bitmap) data.getExtras().get("data");
-                        imgDmgDrop.setImageBitmap(photo);
-                        File file = MyUtils.saveBitmapToFile(MyUtils.resize(photo, 800, 800), "picture" + ".jpg");
-                        image_edit = new TypedFile("multipart/form-data", file);
-                    }
-
-                    break;
-                case 1:
-                    if (resultCode == RESULT_OK) {
-                        displayImageFromGallery(data, imgDmgDrop);
+                        String vincode = data.getStringExtra("vincode");
+                        tvVinCodeDrop.setText(vincode);
                     }
                     break;
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Please try again", Toast.LENGTH_LONG)
+            Toast.makeText(this, R.string.try_again, Toast.LENGTH_LONG)
                     .show();
         }
     }

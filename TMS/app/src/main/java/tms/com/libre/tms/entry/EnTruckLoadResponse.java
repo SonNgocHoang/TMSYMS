@@ -9,7 +9,7 @@ import java.util.List;
  * Created by quangnv on 4/11/17.
  */
 
-public class EnTruckLoad {
+public class EnTruckLoadResponse {
 
     @SerializedName("StatusCode")
     private int StatusCode;

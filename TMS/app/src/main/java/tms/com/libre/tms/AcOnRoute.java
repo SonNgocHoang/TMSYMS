@@ -27,9 +27,7 @@ import com.libre.mylibs.MyUtils;
 import java.io.File;
 
 import retrofit.mime.TypedFile;
-import tms.com.libre.tms.common.AppContanst;
 
-import static tms.com.libre.tms.R.id.imgDamage;
 
 public class AcOnRoute extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,13 +37,13 @@ public class AcOnRoute extends AppCompatActivity implements View.OnClickListener
     private RelativeLayout rlUpdateStatusOnRoute, rlDMGonRoute;
     private ImageView imgDMGonRoute;
     private TypedFile image_edit;
-    private Button btnDMGonRoute;
+    private Button btnDMGonRoute,btnUpdateStatus;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ac_on_route);
+        setContentView(R.layout.ac_on_route);
         init();
     }
 
@@ -54,13 +52,15 @@ public class AcOnRoute extends AppCompatActivity implements View.OnClickListener
         toolbar = (Toolbar) findViewById(R.id.toolbar_login);
         rlBack = (RelativeLayout) toolbar.findViewById(R.id.rlBack);
         tvTitle = (TextView) toolbar.findViewById(R.id.tvTitleLogin);
-        tvTitle.setText("On Route");
-        rlUpdateStatusOnRoute = (RelativeLayout) findViewById(R.id.rlUpdateStatusOnRoute);
+        tvTitle.setText(R.string.on_route);
+
+
+        btnUpdateStatus = (Button) findViewById(R.id.btnUpdateStatus);
         rlDMGonRoute = (RelativeLayout) findViewById(R.id.rlDmgOnRoute);
         imgDMGonRoute = (ImageView) findViewById(R.id.imgDMGonRoute);
         btnDMGonRoute = (Button) findViewById(R.id.btnDMGonRoute);
 
-        rlUpdateStatusOnRoute.setOnClickListener(this);
+        btnUpdateStatus.setOnClickListener(this);
         rlBack.setOnClickListener(this);
         rlDMGonRoute.setOnClickListener(this);
         btnDMGonRoute.setOnClickListener(this);
@@ -107,8 +107,9 @@ public class AcOnRoute extends AppCompatActivity implements View.OnClickListener
             case R.id.rlBack:
                 startActivity(new Intent(AcOnRoute.this, AcMain.class));
                 break;
-            case R.id.rlUpdateStatusOnRoute:
+            case R.id.btnUpdateStatus:
                 startActivity(new Intent(AcOnRoute.this, AcDrop.class));
+                Log.d("DA CLICK", "onClick: ");
                 break;
             case R.id.rlDmgOnRoute:
                 seletePhotoAction();
@@ -177,7 +178,7 @@ public class AcOnRoute extends AppCompatActivity implements View.OnClickListener
                     break;
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Please try again", Toast.LENGTH_LONG)
+            Toast.makeText(this, R.string.try_again, Toast.LENGTH_LONG)
                     .show();
         }
     }

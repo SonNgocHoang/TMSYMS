@@ -20,28 +20,33 @@
         android:layout_above="@+id/rlUpdateStatusDrop"
         android:layout_below="@+id/toolbarOnDrop">
 
-        <ScrollView
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:id="@+id/rlScanVINDrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
 
-                <RelativeLayout
-                    android:id="@+id/rlScanVINDrop"
+                <Button
+                    android:id="@+id/btnScanVinDrop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:background="@drawable/btn_vinslected"
+                    android:text="@string/scan_vin"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black" />
 
-                    <Button
-                        android:id="@+id/btnScanVinDrop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_vinslected"
-                        android:text="@string/scan_vin"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/black" />
+                <RelativeLayout
+                    android:layout_width="220dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true">
 
                     <TextView
                         android:id="@+id/tvVinCodeDrop"
@@ -49,65 +54,59 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:text="VIN CODE"
+                        android:text="@string/scan_vin"
                         android:textColor="@android:color/black"
                         android:textSize="15sp" />
                 </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rlDmgDrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rlScanVINDrop">
-
-                    <Button
-                        android:id="@+id/btnDmgDrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/btn_scanvin"
-                        android:gravity="center"
-                        android:text="Damage"
-                        android:textAlignment="center"
-                        android:textAllCaps="false" />
-
-                    <ImageView
-                        android:id="@+id/imgDmgDrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_below="@+id/btnDmgDrop"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/no_image" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rlSignatureDrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rlDmgDrop">
-
-                    <Button
-                        android:id="@+id/btnSignatureDrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/btn_scanvin"
-                        android:gravity="center"
-                        android:text="Signature"
-                        android:textAlignment="center"
-                        android:textAllCaps="false" />
-
-                    <ImageView
-                        android:id="@+id/imgSignatureDrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_below="@+id/btnSignatureDrop"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/no_image" />
-                </RelativeLayout>
-
             </RelativeLayout>
-        </ScrollView>
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/rlDmgDrop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlScanVINDrop">
+
+                <Button
+                    android:id="@+id/btnDmgDrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_scanvin"
+                    android:gravity="center"
+                    android:text="@string/dmg"
+                    android:textAlignment="center"
+                    android:textAllCaps="false" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/rlSignatureDrop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlDmgDrop">
+
+                <Button
+                    android:id="@+id/btnSignatureDrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_scanvin"
+                    android:gravity="center"
+                    android:text="@string/get_signature"
+                    android:textAlignment="center"
+                    android:textAllCaps="false" />
+
+                <ImageView
+                    android:id="@+id/imgSignatureDrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_below="@+id/btnSignatureDrop"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/no_image" />
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

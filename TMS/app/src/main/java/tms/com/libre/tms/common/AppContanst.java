@@ -17,7 +17,6 @@ public class AppContanst {
     public final static String PASSWORDYMS = "passwordyms";
 
     public final static String NOTES = "notes";
-
     public final static String DRIVERID = "driverid";
 
 

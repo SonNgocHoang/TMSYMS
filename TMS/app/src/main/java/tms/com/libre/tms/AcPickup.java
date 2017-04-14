@@ -4,14 +4,11 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -29,15 +26,12 @@ import android.widget.Toast;
 
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.github.gcacace.signaturepad.views.SignaturePad;
-import com.google.zxing.Result;
 import com.libre.mylibs.MyUtils;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit.mime.TypedFile;
 import tms.com.libre.tms.common.AppContanst;
 import tms.com.libre.tms.common.IntentManager;
@@ -46,7 +40,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
 
     private Button btnSignature, btnUpdateStatus, btnScanVin, btnDamage;
     private TextView tvVinCode, tvNotes, tvTitle;
-    private ImageView imgSignature, imgDamage;
+    private ImageView imgSignature;
     private RelativeLayout rlChangeNotes;
     private static int REQUEST_CODE_SOME_FEATURES_PERMISSIONS = 999;
     private static final int NOTES_REQUEST_CODE = 4;
@@ -97,7 +91,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         toolbar = (Toolbar) findViewById(R.id.toolbar_login);
         rlBack = (RelativeLayout) toolbar.findViewById(R.id.rlBack);
         tvTitle = (TextView) toolbar.findViewById(R.id.tvTitleLogin);
-        tvTitle.setText("Pick Up");
+        tvTitle.setText(R.string.pick_up);
 
         layoutNotes = (RelativeLayout) findViewById(R.id.layoutNotes);
         btnSignature = (Button) findViewById(R.id.btnSignature);
@@ -108,7 +102,6 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         tvVinCode = (TextView) findViewById(R.id.tvVinCode);
         tvNotes = (TextView) findViewById(R.id.tvNotes);
         imgSignature = (ImageView) findViewById(R.id.imgSignature);
-        imgDamage = (ImageView) findViewById(R.id.imgDamage);
 
         rlBack.setOnClickListener(this);
         layoutNotes.setOnClickListener(this);
@@ -120,7 +113,6 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         tvVinCode.setOnClickListener(this);
         tvNotes.setOnClickListener(this);
         imgSignature.setOnClickListener(this);
-        imgDamage.setOnClickListener(this);
     }
 
     //Show dialog Signature
@@ -169,10 +161,12 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 showSignatureDialog();
                 break;
             case R.id.btnScanVin:
-                startActivityForResult(new Intent(AcPickup.this, XzingScanner.class), 10);
+                Intent i = new Intent(this, XzingScanner.class);
+                i.putExtra("pickup", "asdsad");
+                startActivityForResult(i, 10);
                 break;
             case R.id.btnDamage:
-                seletePhotoAction();
+                startActivity(new Intent(AcPickup.this, AcDamageReport.class));
                 break;
             case R.id.btnUpdateStatus:
                 startActivity(new Intent(AcPickup.this, AcOnRoute.class));
@@ -181,6 +175,17 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
                 IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
                 break;
             case R.id.tvVinCode:
+                AlertDialog alertDialog = new AlertDialog.Builder(this)
+                        .setTitle(R.string.qrCode)
+                        .setMessage(tvVinCode.getText().toString())
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create();
+                alertDialog.show();
                 break;
             case R.id.tvNotes:
                 IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
@@ -188,47 +193,45 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
             case R.id.imgSignature:
                 showPopUpImage(imgSignature.getDrawable(), 0);
                 break;
-            case R.id.imgDamage:
-                showPopUpImage(imgDamage.getDrawable(), 1);
-                break;
             case R.id.layoutNotes:
                 IntentManager.startActivityForResult(AcPickup.this, AccAddNote.class, null, NOTES_REQUEST_CODE, null);
                 break;
+
         }
     }
 
-    public void seletePhotoAction() {
-        AlertDialog.Builder b = new AlertDialog.Builder(this);
-
-        b.setTitle(this.getString(R.string.seleted_photo_upload));
-        b.setMessage(this.getString(R.string.select_where_photo));
-        b.setPositiveButton(getString(R.string.from_camera), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                try {
-                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(takePicture, 0);
-                } catch (SecurityException s) {
-                }
-
-            }
-        });
-        b.setNegativeButton(getString(R.string.from_library), new DialogInterface.OnClickListener() {
-
-            @Override
-
-            public void onClick(DialogInterface dialog, int which)
-
-            {
-                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
-            }
-
-        });
-
-        b.create().show();
-    }
+//    public void seletePhotoAction() {
+//        AlertDialog.Builder b = new AlertDialog.Builder(this);
+//
+//        b.setTitle(this.getString(R.string.seleted_photo_upload));
+//        b.setMessage(this.getString(R.string.select_where_photo));
+//        b.setPositiveButton(getString(R.string.from_camera), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                try {
+//                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                    startActivityForResult(takePicture, 0);
+//                } catch (SecurityException s) {
+//                }
+//
+//            }
+//        });
+//        b.setNegativeButton(getString(R.string.from_library), new DialogInterface.OnClickListener() {
+//
+//            @Override
+//
+//            public void onClick(DialogInterface dialog, int which)
+//
+//            {
+//                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
+//            }
+//
+//        });
+//
+//        b.create().show();
+//    }
 
     public void showPopUpImage(Drawable drawable, int i) {
         final ImagePopup imagePopup = new ImagePopup(this);
@@ -242,9 +245,7 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         } else {
             imagePopup.setWindowWidth(ViewGroup.LayoutParams.MATCH_PARENT);
             imagePopup.setWindowHeight(ViewGroup.LayoutParams.MATCH_PARENT);
-
             imagePopup.initiatePopup(drawable);
-
         }
 
     }
@@ -254,55 +255,39 @@ public class AcPickup extends AppCompatActivity implements View.OnClickListener 
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         try {
             switch (requestCode) {
-                case 0:
-                    if (resultCode == RESULT_OK) {
-                        Bitmap photo = (Bitmap) imageReturnedIntent.getExtras().get("data");
-                        imgDamage.setImageBitmap(photo);
-                        File file = MyUtils.saveBitmapToFile(MyUtils.resize(photo, 800, 800), "picture" + ".jpg");
-                        image_edit = new TypedFile("multipart/form-data", file);
-                    }
-
-                    break;
-                case 1:
-                    if (resultCode == RESULT_OK) {
-                        displayImageFromGallery(imageReturnedIntent, imgDamage);
-                    }
-                    break;
                 case NOTES_REQUEST_CODE:
                     Log.d("davaoday", "aaaa");
                     tvNotes.setText(MyUtils.getStringData(getApplicationContext(), AppContanst.NOTES));
                     break;
-
-            }
-            switch (resultCode) {
-                case RESULT_OK:
-                    if (requestCode == 10) {
-                        String code = imageReturnedIntent.getStringExtra("code");
+                case 10:
+                    if (resultCode == RESULT_OK) {
+                        String code = imageReturnedIntent.getStringExtra("vincode");
                         tvVinCode.setText(code);
                     }
                     break;
+
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Please try again", Toast.LENGTH_LONG)
+            Toast.makeText(this, R.string.try_again, Toast.LENGTH_LONG)
                     .show();
         }
 
     }
 
-    private void displayImageFromGallery(Intent data, ImageView imageView) {
-        Uri selectedImage = data.getData();
-        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-        Cursor cursor = this.getContentResolver().query(selectedImage,
-                filePathColumn, null, null, null);
-        cursor.moveToFirst();
-        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-        String imgDecodableString = cursor.getString(columnIndex);
-        cursor.close();
-        Bitmap bitmap = MyUtils.bitmapRotate(imgDecodableString);
-        imageView.setImageBitmap(bitmap);
-        File file = MyUtils.saveBitmapToFile(MyUtils.resize(bitmap, 800, 800), "picture" + ".jpg");
-        image_edit = new TypedFile("multipart/form-data", file);
-    }
+//    private void displayImageFromGallery(Intent data, ImageView imageView) {
+//        Uri selectedImage = data.getData();
+//        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//        Cursor cursor = this.getContentResolver().query(selectedImage,
+//                filePathColumn, null, null, null);
+//        cursor.moveToFirst();
+//        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//        String imgDecodableString = cursor.getString(columnIndex);
+//        cursor.close();
+//        Bitmap bitmap = MyUtils.bitmapRotate(imgDecodableString);
+//        imageView.setImageBitmap(bitmap);
+//        File file = MyUtils.saveBitmapToFile(MyUtils.resize(bitmap, 800, 800), "picture" + ".jpg");
+//        image_edit = new TypedFile("multipart/form-data", file);
+//    }
 
     private void checkPermission() {
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);

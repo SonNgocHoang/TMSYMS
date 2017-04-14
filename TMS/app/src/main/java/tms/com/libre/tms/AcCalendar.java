@@ -10,9 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CalendarView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import com.libre.mylibs.MyUtils;
 import com.roomorama.caldroid.CaldroidFragment;
@@ -23,25 +21,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import tms.com.libre.tms.adapter.AdapterTruckLoad;
+import tms.com.libre.tms.adapter.AdapterListCalendar;
 import tms.com.libre.tms.common.AppContanst;
-import tms.com.libre.tms.entry.EnTruckLoad;
+import tms.com.libre.tms.entry.EnTruckLoadResponse;
 import tms.com.libre.tms.serivces.AppApi;
-
-import static tms.com.libre.tms.R.id.content_layout;
-import static tms.com.libre.tms.R.id.gridviewTruckLoad;
 
 
 // Created by Sonhoang
 
 public class AcCalendar extends AppCompatActivity {
 
-    private ArrayList<EnTruckLoad.Content> content = new ArrayList<>();
+    private ArrayList<EnTruckLoadResponse.Content> content = new ArrayList<>();
+    private ArrayList<EnTruckLoadResponse.Content> listContents = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,14 +47,15 @@ public class AcCalendar extends AppCompatActivity {
 
     public void init() {
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Calendar");
+            getSupportActionBar().setTitle(R.string.calendar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         getData();
 
+
     }
 
-    public void initCalender(final ArrayList<EnTruckLoad.Content> contents) {
+    public void initCalender(final ArrayList<EnTruckLoadResponse.Content> contents) {
 
         //init Calendar
         CaldroidFragment caldroidFragment = new CaldroidFragment();
@@ -97,16 +93,16 @@ public class AcCalendar extends AppCompatActivity {
 
             @Override
             public void onLongClickDate(Date date, View view) {
+                listContents.clear();
                 for (int i = 0; i < contents.size(); i++) {
-
                     String dateString = new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(contents.get(i).getDT().substring(6, 19))));
                     String dateclick = new SimpleDateFormat("dd/MM/yyyy").format(date);
+
                     if (dateclick.equals(dateString)) {
-                        showDetailDialog(contents.get(i));
+                        listContents.add(contents.get(i));
                     }
-
                 }
-
+                showDetailDialog(listContents);
             }
 
             @Override
@@ -117,69 +113,51 @@ public class AcCalendar extends AppCompatActivity {
         caldroidFragment.setCaldroidListener(listener);
     }
 
-    public ArrayList<EnTruckLoad.Content> getData() {
+    public ArrayList<EnTruckLoadResponse.Content> getData() {
 
         AppApi appApi = new AppApi();
         String driverid = MyUtils.getStringData(getBaseContext(), AppContanst.DRIVERID);
         String token = MyUtils.getStringData(getBaseContext(), AppContanst.TOKEN);
 
-        appApi.services().getTruckLoad(token, driverid, "16", "30", new Callback<EnTruckLoad>() {
+        appApi.services().getTruckLoad(token, driverid, "16", "30", new Callback<EnTruckLoadResponse>() {
             @Override
-            public void success(EnTruckLoad enTruckLoad, Response response) {
-                if (enTruckLoad.getStatusCode() == 200) {
+            public void success(EnTruckLoadResponse enTruckLoadResponse, Response response) {
+                if (enTruckLoadResponse.getStatusCode() == 200) {
                     content = new ArrayList<>();
-                    content = enTruckLoad.getContent();
+                    content = enTruckLoadResponse.getContent();
                     initCalender(content);
                 } else {
-                    MyUtils.showToast(getApplicationContext(), "Load Fail ");
+                    MyUtils.showToast(getApplicationContext(), getString(R.string.login_failed));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                MyUtils.showToast(getApplicationContext(), "Load Fail ");
+                MyUtils.showToast(getApplicationContext(), getString(R.string.login_failed));
             }
         });
         return content;
     }
 
-    public void showDetailDialog(EnTruckLoad.Content content) {
+    public void showDetailDialog(ArrayList<EnTruckLoadResponse.Content> listContents) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.dialog_calendar_detail, null);
+        final View dialogView = inflater.inflate(R.layout.list_calendar, null);
         dialogBuilder.setView(dialogView);
 
-        final TextView tvDate = (TextView) dialogView.findViewById(R.id.tvDT);
-        final TextView tvStatus = (TextView) dialogView.findViewById(R.id.tvStatus);
-        final TextView tvTotalCount = (TextView) dialogView.findViewById(R.id.tvTotalCount);
-        final TextView tvVihicleCount = (TextView) dialogView.findViewById(R.id.tvVehicleCount);
-        final TextView tvID = (TextView) dialogView.findViewById(R.id.tvID);
-        final TextView tvTLNo = (TextView) dialogView.findViewById(R.id.tvTLNO);
-        final TextView tvTruckNo = (TextView) dialogView.findViewById(R.id.tvTrucNo);
-        final TextView tvDriverID = (TextView) dialogView.findViewById(R.id.tvDriverID);
-        final TextView tvDriver = (TextView) dialogView.findViewById(R.id.tvDriver);
+        //setAdapter for customdialog
+        AdapterListCalendar adapterListCalendar = new AdapterListCalendar(listContents, this);
 
-        tvDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(Long.parseLong(content.getDT().substring(6, 19)))));
-        tvStatus.setText(String.valueOf(content.getStatus()));
-        tvTotalCount.setText(String.valueOf(content.getTotalCount()));
-        tvVihicleCount.setText(String.valueOf(content.getTotalCount()));
-        tvID.setText(String.valueOf(content.getID()));
-        tvTLNo.setText(content.getTLNO());
-        tvTruckNo.setText(content.getTruckNo());
-        tvDriverID.setText(String.valueOf(content.getDriverID()));
-        tvDriver.setText(content.getDriver());
-
-        dialogBuilder.setTitle("Calendar");
-        dialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        adapterListCalendar.notifyDataSetChanged();
+        ListView lsvCalendar = (ListView) dialogView.findViewById(R.id.lsvCalendar);
+        lsvCalendar.setAdapter(adapterListCalendar);
+        dialogBuilder.setTitle(R.string.calendar);
+        dialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
             }
         });
-        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
+
         AlertDialog b = dialogBuilder.create();
         b.show();
     }

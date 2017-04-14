@@ -26,7 +26,7 @@
             android:background="@drawable/btn_show_image"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="@string/cancel"
+            android:text="@string/btn_cancel"
             android:textAlignment="center"
             android:textColor="@android:color/holo_red_light" />
 

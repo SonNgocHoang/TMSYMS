@@ -14,21 +14,23 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:layout_marginTop="5dp"
         android:id="@+id/rlDmgOnRoute"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rlUpdateStatus"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
         <Button
-            android:textAlignment="center"
-            android:gravity="center"
-            android:paddingTop="10dp"
             android:id="@+id/btnDMGonRoute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_scanvin"
-            android:text="Damage"
+            android:gravity="center"
+            android:text="@string/dmg"
+            android:textAlignment="center"
             android:textAllCaps="false" />
 
         <ImageView
@@ -46,9 +48,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
         <Button
+            android:background="@drawable/btn_scanvin"
             android:id="@+id/btnUpdateStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

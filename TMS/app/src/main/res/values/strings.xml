@@ -24,7 +24,7 @@
     <string name="scan_vin">Scan VIN</string>
     <string name="update_status">Update Status</string>
     <string name="notes_vihice">Notes Vihicle</string>
-    <string name="dmg">Damage</string>
+    <string name="dmg">Damage Report</string>
     <string name="notes">Notes</string>
     <string name="change_notes">Change Notes</string>
     <string name="ok">OK</string>
@@ -44,15 +44,52 @@
 
     <!--created by sonhoang-->
     <string name="save_login">Save Login</string>
-    <string name="cancel">Cancel</string>
     <string name="take_another">Take Another</string>
 
-    <string name="add_notes">And something note</string>
+    <string name="add_notes">And something notes</string>
     <string name="btn_add_note">Add note</string>
     <string name="btn_cancel">Cancel</string>
 
     <string name="str_total">%1$d /1000</string>
 
+    <!--created by sonhoang-->
     <string name="label_TMS_YMS">TMS</string>
+    <string name="qrCode">QR CODE</string>
+    <string name="try_again">Please try again</string>
+    <string name="login_failed">Login Fail, try again</string>
+    <string name="title_addnotes">Add Notes</string>
+    <string name="calendar">Calendar</string>
+    <string name="load_fail">Load Fail</string>
+    <string name="load_trucklist_fail">Load Truck List Fail</string>
+    <string name="drop">Drop</string>
+    <string name="on_route">OnRoute</string>
+    <string name="pick_up">Pick Up</string>
+    <string name="back">Back</string>
+    <string name="nodata">No Data</string>
+    <string name="vehicle_count">Vihicle Count :</string>
+    <string name="total_count">Total Count :</string>
+    <string name="status">Status :</string>
+    <string name="driver">Driver :</string>
+    <string name="driver_id">Driver ID :</string>
+    <string name="truck_no">TrucNo :</string>
+    <string name="tl_no">TLNO :</string>
+    <string name="id">ID :</string>
+    <string name="damage_type">Damage Type</string>
+    <string name="damage_type_code">Damage Type Code</string>
+    <string name="severity">Severity</string>
+    <string name="btn_save">Save</string>
+    <string name="Scheduled">Scheduled</string>
+    <string name="Pickup">Pickup</string>
+    <string name="OnRoute">OnRoute</string>
+    <string name="Discharge">Discharge</string>
+    <string name="Completed">Completed</string>
+    <string name="addnewdmg">Add New Damage</string>
+    <string name="vin">VIN Code :</string>
+    <string name="model">Model : </string>
+    <string name="make">Make :</string>
+    <string name="year">Year :</string>
+    <string name="shipper">Shipper :</string>
+    <string name="dt">Date :</string>
+    <string name="vehicle_id">VehicleID :</string>
 
 </resources>

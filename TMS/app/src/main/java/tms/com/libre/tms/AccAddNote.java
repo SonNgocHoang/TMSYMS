@@ -1,5 +1,6 @@
 package tms.com.libre.tms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class AccAddNote extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_add_note);
         init();
+
     }
 
     @Override
@@ -56,7 +58,7 @@ public class AccAddNote extends AppCompatActivity implements View.OnClickListene
 
 
     public void init() {
-        getSupportActionBar().setTitle("Add Notes");
+        getSupportActionBar().setTitle(R.string.title_addnotes);
         btnCancel = (Button) findViewById(R.id.btnCancel);
         btnAddNotes = (Button) findViewById(R.id.btnAddNotes);
         btnCancel.setOnClickListener(this);

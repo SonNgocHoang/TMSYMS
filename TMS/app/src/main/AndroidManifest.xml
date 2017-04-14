@@ -49,7 +49,9 @@
         <activity
             android:name=".AccAddNote"
             android:theme="@style/AppTheme" />
-        <activity android:name=".AcDrop"></activity>
+        <activity android:name=".AcDrop" />
+        <activity android:name=".AcDamageReport" />
+        <activity android:name=".AcAddNewReport"></activity>
     </application>
 
 </manifest>
